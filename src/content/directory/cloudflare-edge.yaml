@@ -1,0 +1,6 @@
+name: Cloudflare edge
+description: See which resources sit behind the edge and which skip it.
+url: /connect/cloudflare-edge/
+group: Connect
+icon: network
+dot: cat-edge

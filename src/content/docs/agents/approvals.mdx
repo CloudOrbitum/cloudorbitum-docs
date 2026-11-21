@@ -1,0 +1,31 @@
+---
+title: Approvals and audit
+description: Every change an agent or runbook proposes waits for a person, and every decision is recorded.
+pcx_content_type: concept
+products:
+  - agents
+---
+
+## How approval works
+
+1. An agent or runbook proposes a change.
+2. Orbitum shows the diff, the reason and the facts behind it.
+3. A person with the `approvals:write` scope approves or rejects it.
+4. Approved changes run with the approver's name on them.
+
+```sh
+orb approvals list --status pending
+orb approvals approve apr-311
+```
+
+<Aside type="caution">
+  Destructive changes (delete, detach, revoke) need two approvers.
+</Aside>
+
+## Audit log
+
+Every proposal, decision and run is in the audit log, kept for 400 days.
+
+```sh
+orb audit list --since 7d --actor warden
+```

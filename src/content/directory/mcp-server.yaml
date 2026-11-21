@@ -1,0 +1,5 @@
+name: MCP server
+description: Connect any MCP client to your estate.
+url: /agents/mcp-server/
+group: Agents and automation
+icon: agent

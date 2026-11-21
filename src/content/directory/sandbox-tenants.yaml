@@ -1,0 +1,5 @@
+name: Sandbox tenants
+description: Isolated copies of your estate for tests.
+url: /simulation-lab/sandbox-tenants/
+group: Simulation lab
+icon: sandbox-tenants

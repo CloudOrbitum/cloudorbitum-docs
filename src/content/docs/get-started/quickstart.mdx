@@ -1,0 +1,109 @@
+---
+title: Quickstart
+description: Install the CLI, connect one Azure subscription or AWS account with a read-only key, and run your first graph query.
+pcx_content_type: get-started
+products:
+  - graph
+reviewed: 2026-11-10
+sidebar:
+  order: 2
+---
+
+## Prerequisites
+
+1. An Orbitum account with access to `acme-demo`
+2. Node.js 20 or later
+3. Permission to create a read-only role in the cloud account you want to map
+
+## 1. Install the CLI
+
+The `orb` command talks to the same API the console uses.
+
+<Render file="orbitum/cli-install" />
+
+Check that it installed:
+
+```sh
+orb --version
+```
+
+## 2. Sign in and create a key
+
+Signing in opens the browser. Then create a key scoped to `graph:read`, the only scope this guide needs.
+
+```sh
+orb login
+orb keys create --name quickstart --scope graph:read
+```
+
+## 3. Connect a cloud account
+
+Orbitum writes the role for you. It only needs read access:
+
+| Cloud | Role Orbitum creates | What it can see |
+| --- | --- | --- |
+| Azure | Reader on the subscription | Resources, networks, Defender findings |
+| AWS | `OrbitumReadOnly` cross-account role | Resources, VPCs, CloudTrail events |
+| Cloudflare | API token with Zone:Read | Zones, WAF events, traffic |
+
+Generate the role, review it, then apply it:
+
+```sh
+orb connect azure --subscription 00000000-aaaa-4bbb-8ccc-000000000000
+```
+
+```hcl title="orbitum-reader.tf"
+resource "azuread_service_principal" "orbitum_reader" {
+  client_id = azuread_application.orbitum.client_id
+}
+
+resource "azurerm_role_assignment" "orbitum_reader" {
+  scope                = "/subscriptions/00000000-aaaa-4bbb-8ccc-000000000000"
+  role_definition_name = "Reader"
+  principal_id         = azuread_service_principal.orbitum_reader.object_id
+}
+```
+
+<Aside type="note">
+  Orbitum never needs write access to map your estate. Write scopes are only for agents and runbooks, and they always wait for approval.
+</Aside>
+
+## 4. Run your first query
+
+Ask which resources answer from the internet. Each row says why it is exposed.
+
+```sh
+orb graph query "resources where exposed = true"
+```
+
+```txt
+name            cloud   region          via
+agw-prod-ae     azure   australiaeast   skips edge
+vm-reports-ae   azure   australiaeast   public IP
+```
+
+Or from code:
+
+```ts title="src/exposed.ts"
+import { Orbitum } from "@orbitum/sdk";
+
+const orb = new Orbitum({ key: process.env.ORBITUM_KEY });
+const result = await orb.graph.query("acme-demo", {
+  query: "resources where exposed = true",
+});
+console.log(result.count); // 2
+```
+
+## 5. See it on the map
+
+Add `--open` to any query to open the live map filtered to its results.
+
+```sh
+orb graph query "resources where exposed = true" --open
+```
+
+## Next steps
+
+- [Query language](/graph/): filters, paths and joins across clouds
+- [React to alerts](/alerts/): send alerts to your own endpoint
+- [Start an agent](/agents/): hand a mission to Sentinel or Warden

@@ -1,0 +1,31 @@
+---
+title: MCP server
+description: Connect any MCP client to Orbitum's remote MCP server.
+pcx_content_type: how-to
+products:
+  - agents
+---
+
+Orbitum runs a remote MCP server at `https://mcp.cloudorbitum.com/mcp`. It exposes the graph, alerts and runbooks as tools, limited to the scopes of the key you sign in with.
+
+## Tools
+
+| Tool | Scope |
+| --- | --- |
+| `graph_query` | `graph:read` |
+| `alerts_list` | `alerts:read` |
+| `runbook_propose` | `runbooks:write` |
+
+## Add it to a client
+
+```json title="mcp.json"
+{
+  "mcpServers": {
+    "orbitum": {
+      "url": "https://mcp.cloudorbitum.com/mcp"
+    }
+  }
+}
+```
+
+For step-by-step setup in Claude Code, Codex, Cursor and OpenCode, see [Agent setup](/agent-setup/).

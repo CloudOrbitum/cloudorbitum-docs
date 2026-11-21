@@ -1,0 +1,32 @@
+---
+title: Support
+description: Get help with Orbitum — status, common answers and how to open a case.
+pcx_content_type: navigation
+---
+
+## Before you open a case
+
+- Check [system status](https://status.cloudorbitum.com) for an ongoing incident.
+- Search these docs with <kbd>Ctrl</kbd> <kbd>K</kbd>.
+
+## Common answers
+
+**Error 403: the key does not have the required scope.** The key is valid but was created without the scope the call needs. Check the key with `orb keys show`, create one with the missing scope, then retry.
+
+**A resource is missing from the map.** Discovery runs every 5 minutes. Run `orb connections check` to see whether the connection can read that resource type.
+
+## Contact support
+
+| Plan | Channel | First response |
+| --- | --- | --- |
+| Free | Community forum | Best effort |
+| Team | Email and console | 1 business day |
+| Enterprise | Phone, email and console | 1 h for critical issues |
+
+Attach a support bundle so we can help faster:
+
+```sh
+orb support bundle --output orbitum-support.zip
+```
+
+The bundle contains CLI logs and connection checks. It never contains keys or resource data.

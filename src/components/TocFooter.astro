@@ -1,0 +1,72 @@
+---
+/**
+ * Under "On this page": Was this helpful? plus Edit page and Report issue,
+ * after the developer-site mockup (assets/pages/Docs.html).
+ *
+ * The Yes/No answer is kept in the reader's browser only. To collect answers,
+ * wire `data-orb-feedback` to an analytics endpoint in the script below.
+ */
+import Icon from "@cloudflare/nimbus-docs/components/Icon.astro";
+import { site } from "@/site";
+
+interface Props {
+  editUrl?: string;
+  title: string;
+}
+
+const { editUrl, title } = Astro.props;
+const issueUrl = `${site.repoUrl}/issues/new?title=${encodeURIComponent(`Docs feedback: ${title}`)}&body=${encodeURIComponent(`Page: ${Astro.url.pathname}\n\nWhat could be better?\n`)}`;
+---
+
+<div class="orb-tocfoot" data-orb-feedback>
+  <span class="orb-lab">Was this helpful?</span>
+  <div class="orb-fb">
+    <button type="button" class="orb-btn" data-answer="yes" aria-pressed="false">
+      <Icon name="ph:thumbs-up" class="w-4 h-4" /> Yes
+    </button>
+    <button type="button" class="orb-btn" data-answer="no" aria-pressed="false">
+      <Icon name="ph:thumbs-down" class="w-4 h-4" /> No
+    </button>
+  </div>
+  <p class="m-0 text-[13px] text-muted-foreground" data-thanks hidden>Thanks for telling us.</p>
+  {editUrl && (
+    <a class="orb-lnk" href={editUrl} target="_blank" rel="noopener">
+      <Icon name="ph:pencil-simple" class="w-4 h-4" /> Edit page
+    </a>
+  )}
+  <a class="orb-lnk" href={issueUrl} target="_blank" rel="noopener">
+    <Icon name="ph:github-logo" class="w-4 h-4" /> Report issue
+  </a>
+</div>
+
+<script>
+  import { mount } from "@cloudflare/nimbus-docs/client";
+
+  mount("[data-orb-feedback]", (root) => {
+    const buttons = root.querySelectorAll<HTMLButtonElement>("[data-answer]");
+    const thanks = root.querySelector<HTMLElement>("[data-thanks]");
+    const key = `orb-feedback:${location.pathname}`;
+    const show = (answer: string | null) => {
+      buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.answer === answer)));
+      if (thanks) thanks.hidden = !answer;
+    };
+    try {
+      show(localStorage.getItem(key));
+    } catch {}
+    const controller = new AbortController();
+    buttons.forEach((b) =>
+      b.addEventListener(
+        "click",
+        () => {
+          const answer = b.dataset.answer ?? null;
+          show(answer);
+          try {
+            if (answer) localStorage.setItem(key, answer);
+          } catch {}
+        },
+        { signal: controller.signal },
+      ),
+    );
+    return () => controller.abort();
+  });
+</script>

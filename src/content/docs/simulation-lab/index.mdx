@@ -1,0 +1,29 @@
+---
+title: Simulation lab
+description: Rehearse incidents against a copy of your estate and check that alerts, agents and runbooks respond as expected.
+pcx_content_type: overview
+products:
+  - simulation-lab
+---
+
+<Simulated /> Everything in the Simulation lab is simulated, and every result carries the SIMULATED badge so it can't be mistaken for production data.
+
+## Create a simulation
+
+```sh
+orb lab simulations create --from-incident inc-117 --tenant sandbox-1
+```
+
+A simulation replays the events of a real incident, or a scenario from the catalog, against a [sandbox tenant](/simulation-lab/sandbox-tenants/).
+
+## Check the result
+
+```sh
+orb lab simulations show sim-145
+```
+
+| Check | Result |
+| --- | --- |
+| Alert raised within 2 min | <Pill variant="ok">Passed</Pill> |
+| Sentinel found the cause | <Pill variant="ok">Passed</Pill> |
+| Runbook proposed a fix | <Pill variant="bad">Failed</Pill> |

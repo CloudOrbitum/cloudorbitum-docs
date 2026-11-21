@@ -1,0 +1,30 @@
+---
+/** Button that opens the search dialog, with its shortcut from `src/lib/shortcuts.ts`. */
+import Icon from "@cloudflare/nimbus-docs/components/Icon.astro";
+import { shortcutLabel } from "@cloudflare/nimbus-docs/client";
+import { shortcuts } from "@/lib/shortcuts";
+
+// Rendered for other platforms; the client swaps in ⌘ on macOS and names the
+// key in `aria-keyshortcuts`.
+const key = shortcuts.search;
+---
+
+<button
+  data-slot="search-trigger"
+  data-search-trigger
+  type="button"
+  class="orb-search"
+  data-nb-shortcut-for={key || undefined}
+>
+  <Icon name="ph:magnifying-glass" class="h-4 w-4" />
+  <span class="orb-search-label">Search</span><span class="sr-only"> documentation</span>
+  {key && (
+    <kbd aria-hidden="true" dir="ltr" data-nb-shortcut-hint={key} class="orb-kbd">
+      {shortcutLabel(key)}
+    </kbd>
+  )}
+</button>
+
+<script>
+  import "./search-trigger.client";
+</script>

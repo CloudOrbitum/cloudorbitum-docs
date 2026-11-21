@@ -1,0 +1,39 @@
+---
+/**
+ * <DirectoryGrid> — every product in src/content/directory/, grouped as in the
+ * sidebar. Add a product by adding a YAML file there; it shows up here and on
+ * the home page.
+ *
+ * Usage (MDX): <DirectoryGrid />  ·  <DirectoryGrid group="Connect" />
+ */
+import { getCollection } from "astro:content";
+import LinkCard from "./LinkCard.astro";
+
+interface Props {
+  group?: string;
+}
+const { group } = Astro.props;
+
+const order = ["Connect", "Build", "Agents and automation", "Simulation lab", "Reference"];
+const entries = (await getCollection("directory"))
+  .filter((e) => !group || e.data.group === group)
+  .sort((a, b) => a.data.name.localeCompare(b.data.name));
+const groups = order
+  .map((g) => ({ name: g, items: entries.filter((e) => e.data.group === g) }))
+  .filter((g) => g.items.length > 0);
+---
+
+<div class="not-prose flex flex-col gap-8 my-6">
+  {groups.map((g) => (
+    <section class="flex flex-col gap-3">
+      {!group && <h2 class="m-0 text-[17px] font-semibold text-foreground" id={g.name.toLowerCase().replace(/\s+/g, "-")}>{g.name}</h2>}
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {g.items.map((e) => (
+          <LinkCard title={e.data.name} href={e.data.url} icon={e.data.icon} dot={e.data.dot}>
+            {e.data.description}
+          </LinkCard>
+        ))}
+      </div>
+    </section>
+  ))}
+</div>

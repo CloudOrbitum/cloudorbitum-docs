@@ -1,0 +1,32 @@
+---
+title: Connect Cloudflare edge
+description: See which resources sit behind the edge and which skip it.
+pcx_content_type: how-to
+products:
+  - connect
+sidebar:
+  order: 3
+---
+
+Connect Cloudflare to add zones, DNS records, WAF events and traffic to the graph. Orbitum then marks each origin as **behind edge** or **skips edge**.
+
+## Create an API token
+
+In the Cloudflare dashboard, create a token with these permissions:
+
+| Permission | Access |
+| --- | --- |
+| Zone | Read |
+| DNS | Read |
+| Analytics | Read |
+| Firewall services | Read |
+
+## Connect
+
+```sh
+orb connect cloudflare --token-stdin < token.txt
+```
+
+<Aside type="caution">
+  Don't paste the token as a flag: it ends up in your shell history. Use `--token-stdin`.
+</Aside>

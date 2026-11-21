@@ -1,0 +1,47 @@
+---
+title: Writing
+description: Voice, words, numbers and sample data for Orbitum docs.
+pcx_content_type: reference
+noindex: true
+sidebar:
+  order: 5
+---
+
+The docs follow the Orbitum content style (`orbitum-design-system/docs/05-content-style.md`). Write for a busy engineer who has never seen the product.
+
+## Voice
+
+- Plain, direct, calm. Say what happens and what to do, in that order.
+- Use the reader's words: "gateway", "region", "alert". Explain product terms the first time.
+- Use "you" for the reader. Agents speak in the first person.
+- Never blame: "Connection failed. Check the access key." not "You entered a wrong key."
+
+## Rules
+
+- Sentence case everywhere, including titles, headings and buttons.
+- No full stop on headings, labels or one-sentence captions.
+- Numbers have units: "every 5 min", "400 days", "18.4% failing (baseline 0.3%)".
+- Dates and times: "10 Nov 2026", "today 10:05", "2 h ago". 24-hour time.
+- Link text says where it goes: "see [Connect Azure](/connect/azure/)", not "click here".
+
+## Status words
+
+| State | Words |
+| --- | --- |
+| Works | <Pill variant="ok">Healthy</Pill> <Pill variant="ok">Connected</Pill> <Pill variant="ok">Passed</Pill> |
+| Attention | <Pill variant="warn">Needs review</Pill> <Pill variant="warn">Degraded</Pill> |
+| Problem | <Pill variant="bad">Critical</Pill> <Pill variant="bad">Failed</Pill> <Pill variant="bad">Down</Pill> |
+| In progress | <Pill variant="info">Running</Pill> <Pill variant="info">Checking</Pill> |
+| Not real | <Simulated /> <Pill>Dry run</Pill> <Pill>Draft</Pill> |
+
+## Sample data
+
+Never use real customer names, accounts or addresses.
+
+| Kind | Use |
+| --- | --- |
+| Account | `acme-demo` |
+| Domain | `example.com`, `hooks.example.com` |
+| IP addresses | `203.0.113.0/24`, `198.51.100.0/24` |
+| Azure subscription | `00000000-aaaa-4bbb-8ccc-000000000000` |
+| AWS account | `111122223333` |

@@ -1,0 +1,36 @@
+---
+title: Connect AWS
+description: Map an AWS account with a read-only cross-account role.
+pcx_content_type: how-to
+products:
+  - connect
+sidebar:
+  order: 2
+---
+
+<Pill variant="aws">AWS</Pill> Orbitum assumes an `OrbitumReadOnly` role in your account. The role trusts only Orbitum's account and requires an external ID.
+
+## Connect an account
+
+<Steps>
+  <Step title="Create the role">
+    ```sh
+    orb connect aws --account 111122223333
+    ```
+
+    The CLI prints a CloudFormation link and an external ID. Open the link and create the stack.
+  </Step>
+  <Step title="Confirm the connection">
+    ```sh
+    orb connections list
+    ```
+  </Step>
+</Steps>
+
+## What the role can do
+
+The role uses the AWS managed `ReadOnlyAccess` policy, minus data-plane reads such as `s3:GetObject`. Orbitum sees that a bucket exists and how it is exposed, never what is inside it.
+
+<Aside type="tip" title="Many accounts">
+  Connect an AWS Organization once with `orb connect aws --organization` and Orbitum adds new accounts as they appear.
+</Aside>

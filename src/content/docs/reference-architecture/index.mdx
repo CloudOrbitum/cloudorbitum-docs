@@ -1,0 +1,32 @@
+---
+title: Observability across Azure and AWS with Orbitum
+description: How Orbitum combines cloud inventories, edge traffic and Terraform state into one graph.
+pcx_content_type: reference-architecture
+sidebar:
+  label: Reference architecture
+---
+
+## Overview
+
+Most estates spread one application across several clouds, a CDN and a pile of Terraform. Each tool sees one part. Orbitum joins them into one graph so a question like _"what can reach this database?"_ has one answer.
+
+## Sources
+
+| Layer | Source | Refresh |
+| --- | --- | --- |
+| Inventory | Azure Resource Graph, AWS Config | Every 5 min |
+| Changes | Activity log, CloudTrail | Streaming |
+| Edge | Cloudflare zones, WAF and traffic logs | Every 1 min |
+| Intent | Terraform state | On every apply |
+
+## Data flow
+
+1. Connectors read each source with a read-only identity.
+2. The graph builder merges facts, keeping the source of each one.
+3. Exposure analysis walks the graph from every internet entry point.
+4. Alerts, agents and the live map read the same graph.
+
+## Considerations
+
+- **Least privilege.** Mapping needs read access only. Keep write scopes for agents and runbooks, behind approvals.
+- **Data residency.** Graph data stays in the region you pick when you create the account.

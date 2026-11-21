@@ -1,0 +1,33 @@
+---
+title: Changelog entries
+description: How to announce a new feature, change or deprecation.
+pcx_content_type: how-to
+noindex: true
+sidebar:
+  order: 6
+---
+
+Each entry is one MDX file in `src/content/changelog/<product>/`, named `<YYYY-MM-DD>-<slug>.mdx`. The folder name must be a product id from `src/content/directory/`.
+
+```mdx title="src/content/changelog/graph/2026-11-18-path-queries.mdx"
+---
+title: Path queries are generally available
+description: Follow relationships across clouds with the -> operator in graph queries.
+date: 2026-11-18
+products:
+  - graph
+link: /graph/#paths
+---
+
+Path queries are out of beta. Use `->` to follow relationships…
+```
+
+| Field | Required | Use |
+| --- | --- | --- |
+| `title` | Yes | What changed, as a statement |
+| `description` | Yes | One sentence, shown on the home page |
+| `date` | Yes | The release date, YYYY-MM-DD |
+| `products` | Yes | One or more product ids |
+| `link` | No | The docs page that covers the change |
+
+New entries show up on [Changelog](/changelog/) and in **Latest changes** on the home page.

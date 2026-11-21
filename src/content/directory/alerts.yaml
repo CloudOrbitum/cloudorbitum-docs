@@ -1,0 +1,5 @@
+name: Alerts and webhooks
+description: Send alerts to your own endpoint, chat or on-call tool.
+url: /alerts/
+group: Build
+icon: alerts

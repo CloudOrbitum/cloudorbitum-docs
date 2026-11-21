@@ -1,0 +1,5 @@
+name: Runbooks
+description: Write runbooks as code and let alerts trigger them.
+url: /agents/runbooks/
+group: Agents and automation
+icon: runbooks

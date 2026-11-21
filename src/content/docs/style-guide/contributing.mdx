@@ -1,0 +1,93 @@
+---
+title: Contributing
+description: Set up the docs repo, add or change a page, preview it and open a pull request.
+pcx_content_type: how-to
+noindex: true
+sidebar:
+  order: 1
+---
+
+The docs are an [Astro](https://astro.build) site built with [Nimbus](https://nimbus-docs.com), the same framework as [developers.cloudflare.com](https://developers.cloudflare.com). Every page is an MDX file: Markdown plus components.
+
+## Set up
+
+<Tabs syncKey="setup">
+  <TabItem label="Node.js">
+    You need Node.js 24 (see `.nvmrc`).
+
+    ```sh
+    git clone https://github.com/CloudOrbitum/cloudorbitum-docs.git
+    cd cloudorbitum-docs
+    npm install
+    npm run dev
+    ```
+
+    Open `http://localhost:1111`. Pages reload as you save.
+  </TabItem>
+  <TabItem label="Docker">
+    You need Docker Desktop.
+
+    ```sh
+    git clone https://github.com/CloudOrbitum/cloudorbitum-docs.git
+    cd cloudorbitum-docs
+    docker compose up dev
+    ```
+
+    Open `http://localhost:1111`. Your local `src/` folder is mounted, so pages reload as you save.
+  </TabItem>
+</Tabs>
+
+## Where things live
+
+| Path | What it holds |
+| --- | --- |
+| `src/content/docs/` | One MDX file per page. The path is the URL: `connect/azure.mdx` → `/connect/azure/` |
+| `src/content/partials/` | Reusable MDX snippets, included with `<Render>` |
+| `src/content/changelog/` | One file per changelog entry, in a folder per product |
+| `src/content/directory/` | One YAML file per product, shown on [Directory](/directory/) |
+| `src/api/openapi.yaml` | The API spec behind the [API reference](/api/) |
+| `src/assets/images/` | Images used in pages |
+| `astro.config.ts` | Site settings and the sidebar |
+
+## Add a page
+
+<Steps>
+  <Step title="Create the file">
+    Folder and file names are lowercase with dashes: `src/content/docs/connect/gcp.mdx`. Every folder has an `index.mdx`.
+
+    ```mdx title="src/content/docs/connect/gcp.mdx"
+    ---
+    title: Connect Google Cloud
+    description: Map a Google Cloud project with a read-only service account.
+    pcx_content_type: how-to
+    products:
+      - connect
+    ---
+
+    Orbitum reads resources through a service account with the Viewer role.
+    ```
+  </Step>
+  <Step title="Add it to the sidebar">
+    Add a `link("Google Cloud", "/connect/gcp/")` line to the right group in `astro.config.ts`.
+  </Step>
+  <Step title="Check it">
+    ```sh
+    npm run check
+    npm run build
+    npm run lint:docs
+    ```
+  </Step>
+  <Step title="Open a pull request">
+    Branch from `main`, commit, and open a pull request. Say which page you changed and why.
+  </Step>
+</Steps>
+
+## Common mistakes
+
+1. **Unescaped `{`, `}`, `<` or `>` in prose.** MDX reads them as code. Wrap them in backticks.
+2. **Full URLs for internal links.** Use `/connect/azure/`, not `https://docs.cloudorbitum.com/connect/azure/`.
+3. **Relative links.** `./azure` doesn't work. Use the absolute path from the site root.
+4. **Skipped heading levels.** Don't jump from `##` to `####`.
+5. **A `$` before terminal commands.** The copy button copies it too.
+6. **Capitalised code languages.** Use `json`, not `JSON`; `txt` for plain output.
+7. **Hard-coded colours in components.** Use design-system tokens only. See `src/styles/orbitum/theme.css`.

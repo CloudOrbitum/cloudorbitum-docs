@@ -1,0 +1,5 @@
+name: Agents
+description: Hand a mission to Sentinel, Warden or Planner.
+url: /agents/
+group: Agents and automation
+icon: agents

@@ -1,0 +1,5 @@
+name: Terraform provider
+description: Manage Orbitum itself as code.
+url: /terraform/
+group: Reference
+icon: architectures

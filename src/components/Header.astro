@@ -1,0 +1,71 @@
+---
+/**
+ * Site header, after the developer-site mockup (assets/pages/Docs.html, `.dhead`):
+ * brand + DOCS badge, the top-level sections, search, GitHub, theme toggle and
+ * the Dashboard call to action.
+ */
+import Logo from "./Logo.astro";
+import Icon from "@cloudflare/nimbus-docs/components/Icon.astro";
+import { Button } from "./ui/button";
+import { ThemeToggle } from "./ui/theme-toggle";
+import SearchTrigger from "./ui/search/SearchTrigger.astro";
+import { ShortcutsToggle } from "./ui/shortcuts";
+import { config } from "virtual:nimbus/config";
+import { stripBase, withBase } from "@cloudflare/nimbus-docs/runtime";
+import { site } from "@/site";
+import type { SidebarSection } from "@cloudflare/nimbus-docs/types";
+
+interface Props {
+  collection?: string;
+  entryId?: string;
+  /** Whether the page has a sidebar to open on phones. */
+  showSidebar?: boolean;
+  sections?: SidebarSection[];
+}
+
+const { showSidebar = true } = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const currentPath = stripBase(Astro.url.pathname, base).replace(/\/$/, "") + "/";
+const homeHref = withBase("/", base);
+const isActive = (href: string) => currentPath.startsWith(href);
+---
+
+<header class="orb-head sticky top-0 z-30">
+  <a href={homeHref} class="orb-brand">
+    <Logo />
+    <span>{site.brand}</span>
+    <span class="orb-badge">Docs</span>
+  </a>
+
+  <nav aria-label="Sections" class="orb-nav hidden md:flex">
+    {site.headerNav.map((item) => (
+      <a href={withBase(item.href, base)} aria-current={isActive(item.href) ? "page" : undefined}>
+        {item.label}
+      </a>
+    ))}
+  </nav>
+
+  <div class="ms-auto flex items-center gap-2 shrink-0">
+    {config.search !== false && <SearchTrigger />}
+    {config.search === false && <ShortcutsToggle compact />}
+    {config.github && (
+      <a href={config.github} class="orb-ibtn" aria-label="GitHub repository" target="_blank" rel="noopener">
+        <Icon name="ph:github-logo" class="w-4 h-4" />
+      </a>
+    )}
+    <ThemeToggle />
+    <a href={site.dashboardUrl} class="orb-cta hidden sm:inline-flex">Dashboard</a>
+    {showSidebar && (
+      <Button
+        variant="ghost"
+        shape="square"
+        size="sm"
+        icon="ph:list"
+        aria-label="Open navigation"
+        data-menu-btn
+        class="md:hidden text-muted-foreground"
+      />
+    )}
+  </div>
+</header>

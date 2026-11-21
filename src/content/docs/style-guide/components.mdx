@@ -1,0 +1,161 @@
+---
+title: Components
+description: Every MDX component available in the docs, with a live example of each.
+pcx_content_type: reference
+noindex: true
+sidebar:
+  order: 4
+---
+
+Components are registered in `src/components.ts`, so you can use them in any MDX page without an `import`. When you add a component, add it to this page in the same change.
+
+## Aside
+
+Notes, tips and warnings. Use `type`: `note`, `tip`, `caution` or `danger`.
+
+<Aside type="tip" title="Read-only by default">
+  Mapping never needs write access.
+</Aside>
+
+```mdx
+<Aside type="tip" title="Read-only by default">
+  Mapping never needs write access.
+</Aside>
+```
+
+## Steps
+
+Numbered steps for how-to pages.
+
+<Steps>
+  <Step title="Install the CLI">Run the install command.</Step>
+  <Step title="Sign in">Run `orb login`.</Step>
+</Steps>
+
+```mdx
+<Steps>
+  <Step title="Install the CLI">Run the install command.</Step>
+  <Step title="Sign in">Run `orb login`.</Step>
+</Steps>
+```
+
+## Tabs
+
+Alternatives the reader picks one of. Tabs with the same `syncKey` switch together.
+
+<Tabs syncKey="lang">
+  <TabItem label="TypeScript">`npm install @orbitum/sdk`</TabItem>
+  <TabItem label="Python">`pip install orbitum`</TabItem>
+</Tabs>
+
+```mdx
+<Tabs syncKey="lang">
+  <TabItem label="TypeScript">`npm install @orbitum/sdk`</TabItem>
+  <TabItem label="Python">`pip install orbitum`</TabItem>
+</Tabs>
+```
+
+## PackageManagers
+
+One install command, with a tab for npm, pnpm, yarn and bun.
+
+<PackageManagers pkg="@orbitum/sdk" />
+
+```mdx
+<PackageManagers pkg="@orbitum/sdk" />
+```
+
+## CommandLine
+
+A one-line command with a copy button. For anything longer, use a fenced code block.
+
+<CommandLine command="orb graph query &quot;resources where exposed = true&quot;" />
+
+```mdx
+<CommandLine command='orb graph query "resources where exposed = true"' />
+```
+
+## Code blocks
+
+Fenced code with a language. Add `title` for a file name.
+
+```ts title="src/exposed.ts"
+const orb = new Orbitum({ key: process.env.ORBITUM_KEY });
+```
+
+````mdx
+```ts title="src/exposed.ts"
+const orb = new Orbitum({ key: process.env.ORBITUM_KEY });
+```
+````
+
+## LinkCard
+
+A card that links somewhere. Use `icon` (a design-system icon) or `dot` (a token name for a coloured dot).
+
+<div class="grid gap-3 sm:grid-cols-2 not-prose">
+  <LinkCard title="Quickstart" href="/get-started/quickstart/" icon="play" cta="Start">First query in five minutes.</LinkCard>
+  <LinkCard title="Azure" href="/connect/azure/" dot="cloud-azure" cta="Connect">Map a subscription.</LinkCard>
+</div>
+
+```mdx
+<LinkCard title="Quickstart" href="/get-started/quickstart/" icon="play" cta="Start">
+  First query in five minutes.
+</LinkCard>
+```
+
+## Card and CardGrid
+
+Plain cards, with a Phosphor icon.
+
+<CardGrid>
+  <Card title="Read-only" icon="ph:lock">Mapping uses read access only.</Card>
+  <Card title="Approvals" icon="ph:check-circle">Changes wait for a person.</Card>
+</CardGrid>
+
+## Pill and Simulated
+
+Status pills from the design system. The word carries the meaning; colour only supports it. Anything from the Simulation lab carries `<Simulated />`.
+
+<Pill variant="ok">Healthy</Pill> <Pill variant="warn">Needs review</Pill> <Pill variant="bad">Failed</Pill> <Pill variant="info">Running</Pill> <Pill variant="azure">Azure</Pill> <Pill variant="aws">AWS</Pill> <Simulated />
+
+```mdx
+<Pill variant="ok">Healthy</Pill> <Simulated />
+```
+
+## OrbIcon
+
+A design-system icon by name (see `src/styles/orbitum/icons.json`).
+
+<OrbIcon name="live-map" size={20} /> <OrbIcon name="agents" size={20} /> <OrbIcon name="alerts" size={20} />
+
+```mdx
+<OrbIcon name="live-map" size={20} />
+```
+
+## Badge and LinkButton
+
+<Badge text="Beta" variant="info" /> <LinkButton href="/get-started/quickstart/" variant="primary">Get started</LinkButton>
+
+```mdx
+<Badge text="Beta" variant="info" />
+<LinkButton href="/get-started/quickstart/" variant="primary">Get started</LinkButton>
+```
+
+## Render
+
+Includes a partial from `src/content/partials/`. Use it for content that appears on more than one page.
+
+```mdx
+<Render file="orbitum/cli-install" />
+```
+
+## DirectoryGrid, ChangelogEntries and LatestChanges
+
+Data-driven blocks that read `src/content/directory/` and `src/content/changelog/`.
+
+```mdx
+<DirectoryGrid group="Connect" />
+<LatestChanges count={3} />
+<ChangelogEntries />
+```

@@ -1,0 +1,6 @@
+name: Terraform state
+description: Link every resource to the Terraform code that created it.
+url: /connect/terraform-state/
+group: Connect
+icon: architectures
+dot: muted

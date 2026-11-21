@@ -1,0 +1,46 @@
+---
+title: Alerts and webhooks
+description: Send Orbitum alerts to your own endpoint, chat or on-call tool.
+pcx_content_type: how-to
+products:
+  - alerts
+---
+
+Orbitum raises an alert when something on the map changes in a way that matters: a new exposure, a certificate about to expire, a failing health check.
+
+## Severity
+
+| Severity | Meaning |
+| --- | --- |
+| <Pill variant="bad">Critical</Pill> | Customer-facing impact now |
+| <Pill variant="warn">High</Pill> | Impact likely within hours |
+| <Pill variant="info">Info</Pill> | Worth knowing, no action needed |
+
+## Send alerts to a webhook
+
+```sh
+orb alerts destinations create webhook \
+  --url https://hooks.example.com/orbitum \
+  --min-severity high
+```
+
+Each delivery is a `POST` with a JSON body and an `Orbitum-Signature` header:
+
+```json
+{
+  "id": "alr-2041",
+  "severity": "critical",
+  "title": "agw-prod-ae is reachable without the edge",
+  "resource": "agw-prod-ae",
+  "opened_at": "2026-11-20T10:05:00Z"
+}
+```
+
+## Verify the signature
+
+```ts title="verify.ts"
+import { verifyWebhook } from "@orbitum/sdk";
+
+const ok = await verifyWebhook(request, process.env.ORBITUM_WEBHOOK_SECRET);
+if (!ok) return new Response("Signature check failed", { status: 401 });
+```

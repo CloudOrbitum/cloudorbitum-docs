@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbitum developer site · mockup pages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="css/orbitum-devsite.css">
+<style>
+body{margin:0;background:var(--bg)}
+.g-wrap{max-width:1280px;margin:0 auto;padding:56px 32px 80px;box-sizing:border-box}
+.g-head{display:flex;flex-direction:column;gap:12px;margin-bottom:40px}
+.g-head h1{margin:0;font-size:40px;font-weight:700;letter-spacing:-.02em;color:var(--text)}
+.g-head p{margin:0;max-width:720px;font-size:16px;line-height:1.6;color:var(--sub)}
+.g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+.g-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--panel);overflow:hidden;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s}
+.g-card:hover,.g-card:focus-visible{border-color:var(--line3);box-shadow:0 6px 24px rgba(0,0,0,.08)}
+.g-thumb{display:block;aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--line);background:var(--bg)}
+.g-thumb img{display:block;width:100%;height:auto}
+.g-meta{display:flex;flex-direction:column;gap:4px;padding:16px 18px 18px}
+.g-num{font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--sub)}
+.g-title{font-size:16px;font-weight:600;color:var(--text)}
+.g-file{font-family:var(--font-mono,ui-monospace,monospace);font-size:12px;color:var(--sub)}
+@media (prefers-reduced-motion:reduce){.g-card{transition:none}}
+</style>
+</head>
+<body>
+<main class="orb dev g-wrap" style="font-family:var(--font-sans);color:var(--text)">
+  <header class="g-head">
+    <h1>Orbitum developer site · mockup pages</h1>
+    <p>Rendered examples of every page drafted on the canvas. Each page runs on its own in a browser: the header search opens the search dialog, and the theme switch, tabs, filters and collapsible menus work as they do on the canvas. Content is placeholder.</p>
+  </header>
+  <div class="g-grid">
+    <a class="g-card" href="pages/Main.html">
+      <span class="g-thumb"><img src="previews/Main.png" alt="" loading="lazy" width="1440" height="900"></span>
+      <span class="g-meta"><span class="g-num">01</span><span class="g-title">Developer home</span><span class="g-file">pages/Main.html</span></span>
+    </a>
+    <a class="g-card" href="pages/Docs.html">
+      <span class="g-thumb"><img src="previews/Docs.png" alt="" loading="lazy" width="1440" height="900"></span>
+      <span class="g-meta"><span class="g-num">02</span><span class="g-title">Docs article · Quickstart</span><span class="g-file">pages/Docs.html</span></span>
+    </a>
+    <a class="g-card" href="pages/ApiRef.html">
+      <span class="g-thumb"><img src="previews/ApiRef.png" alt="" loading="lazy" width="1440" height="900"></span>
+      <span class="g-meta"><span class="g-num">03</span><span class="g-title">API reference · Query the graph</span><span class="g-file">pages/ApiRef.html</span></span>
+    </a>
+    <a class="g-card" href="pages/Changelog.html">
+      <span class="g-thumb"><img src="previews/Changelog.png" alt="" loading="lazy" width="1440" height="900"></span>
+      <span class="g-meta"><span class="g-num">04</span><span class="g-title">Changelog</span><span class="g-file">pages/Changelog.html</span></span>
+    </a>
+    <a class="g-card" href="pages/Directory.html">
+      <span class="g-thumb"><img src="previews/Directory.png" alt="" loading="lazy" width="1440" height="900"></span>
+      <span class="g-meta"><span class="g-num">05</span><span class="g-title">Directory</span><span class="g-file">pages/Directory.html</span></span>
+    </a>
+    <a class="g-card" href="pages/AgentSetup.html">
+      <span class="g-thumb"><img src="previews/AgentSetup.png" alt="" loading="lazy" width="1440" height="900"></span>
+      <span class="g-meta"><span class="g-num">06</span><span class="g-title">Agent setup</span><span class="g-file">pages/AgentSetup.html</span></span>
+    </a>
+    <a class="g-card" href="pages/Resources.html">
+      <span class="g-thumb"><img src="previews/Resources.png" alt="" loading="lazy" width="1440" height="900"></span>
+      <span class="g-meta"><span class="g-num">07</span><span class="g-title">Resources</span><span class="g-file">pages/Resources.html</span></span>
+    </a>
+    <a class="g-card" href="pages/LearningPath.html">
+      <span class="g-thumb"><img src="previews/LearningPath.png" alt="" loading="lazy" width="1440" height="900"></span>
+      <span class="g-meta"><span class="g-num">08</span><span class="g-title">Resources · Learning path</span><span class="g-file">pages/LearningPath.html</span></span>
+    </a>
+    <a class="g-card" href="pages/RefArch.html">
+      <span class="g-thumb"><img src="previews/RefArch.png" alt="" loading="lazy" width="1440" height="900"></span>
+      <span class="g-meta"><span class="g-num">09</span><span class="g-title">Resources · Reference architecture</span><span class="g-file">pages/RefArch.html</span></span>
+    </a>
+    <a class="g-card" href="pages/Support.html">
+      <span class="g-thumb"><img src="previews/Support.png" alt="" loading="lazy" width="1440" height="900"></span>
+      <span class="g-meta"><span class="g-num">10</span><span class="g-title">Support</span><span class="g-file">pages/Support.html</span></span>
+    </a>
+    <a class="g-card" href="pages/ContactSupport.html">
+      <span class="g-thumb"><img src="previews/ContactSupport.png" alt="" loading="lazy" width="1440" height="900"></span>
+      <span class="g-meta"><span class="g-num">11</span><span class="g-title">Support · Contacting support</span><span class="g-file">pages/ContactSupport.html</span></span>
+    </a>
+    <a class="g-card" href="pages/Error403.html">
+      <span class="g-thumb"><img src="previews/Error403.png" alt="" loading="lazy" width="1440" height="900"></span>
+      <span class="g-meta"><span class="g-num">12</span><span class="g-title">Support · Troubleshooting (Error 403)</span><span class="g-file">pages/Error403.html</span></span>
+    </a>
+    <a class="g-card" href="pages/SearchDialog.html">
+      <span class="g-thumb"><img src="previews/SearchDialog.png" alt="" loading="lazy" width="1440" height="900"></span>
+      <span class="g-meta"><span class="g-num">C1</span><span class="g-title">Search dialog</span><span class="g-file">pages/SearchDialog.html</span></span>
+    </a>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,19 @@
+---
+title: Pulumi
+description: Manage Orbitum resources from Pulumi in TypeScript, Python or Go.
+pcx_content_type: reference
+---
+
+<PackageManagers pkg="@orbitum/pulumi" />
+
+```ts title="index.ts"
+import * as orbitum from "@orbitum/pulumi";
+
+new orbitum.AlertDestination("oncall", {
+  type: "webhook",
+  url: "https://hooks.example.com/orbitum",
+  minSeverity: "high",
+});
+```
+
+The Pulumi provider is generated from the [Terraform provider](/terraform/), so resources and arguments match.

@@ -1,0 +1,32 @@
+---
+title: Agents
+description: Hand a mission to an Orbitum agent and review what it proposes.
+pcx_content_type: overview
+products:
+  - agents
+---
+
+Agents work on your estate through the same API you use, with their own keys and scopes. Each agent has one job:
+
+| Agent | What it does |
+| --- | --- |
+| Planner | Breaks a mission into steps and hands them to the other agents |
+| Sentinel | Investigates alerts and explains what happened |
+| Warden | Proposes fixes for exposure and misconfiguration |
+| Judge | Checks a proposed change against your policies |
+
+## Start a mission
+
+```sh
+orb agents run sentinel --mission "explain alert alr-2041"
+```
+
+Sentinel answers in the first person and cites the facts it used:
+
+```txt
+I traced alr-2041 to agw-prod-ae. It has a public IP and a listener on 443,
+so traffic can reach it without passing through the edge. Source: Azure
+Resource Graph, 10:02.
+```
+
+Anything that changes your estate becomes a proposal. See [Approvals and audit](/agents/approvals/).

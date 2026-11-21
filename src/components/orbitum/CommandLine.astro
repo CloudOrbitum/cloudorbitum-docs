@@ -1,0 +1,71 @@
+---
+/**
+ * <CommandLine> — a one-line command with a copy button (the `.cline` block
+ * from the developer-site mockup). For multi-line code, use a fenced code block.
+ *
+ * Usage (MDX): <CommandLine command='orb graph query "resources where exposed = true"' />
+ */
+import Icon from "@cloudflare/nimbus-docs/components/Icon.astro";
+
+interface Props {
+  command: string;
+}
+const { command } = Astro.props;
+---
+
+<div class="orb-cline not-prose">
+  <code>{command}</code>
+  <button type="button" aria-label="Copy command" data-orb-cline-copy={command}>
+    <Icon name="ph:copy" class="w-4 h-4" />
+  </button>
+</div>
+
+<style>
+  .orb-cline {
+    display: flex;
+    align-items: stretch;
+    max-width: 680px;
+    margin: var(--sp-4) 0;
+    border: 1px solid var(--line);
+    border-radius: var(--r-xs);
+    overflow: hidden;
+  }
+  .orb-cline code {
+    flex: 1;
+    min-width: 0;
+    padding: 16px 12px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: var(--fs-14);
+    line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 0;
+    border-radius: 0;
+  }
+  .orb-cline button {
+    padding: 0 14px;
+    border: none;
+    border-left: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--sub);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  .orb-cline button:hover {
+    color: var(--text);
+    background: var(--hover);
+  }
+</style>
+
+<script>
+  import { mount } from "@cloudflare/nimbus-docs/client";
+  mount("[data-orb-cline-copy]", (btn) => {
+    const onClick = () => navigator.clipboard?.writeText(btn.getAttribute("data-orb-cline-copy") ?? "").catch(() => {});
+    btn.addEventListener("click", onClick);
+    return () => btn.removeEventListener("click", onClick);
+  });
+</script>

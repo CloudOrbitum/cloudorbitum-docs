@@ -1,0 +1,39 @@
+---
+title: Connect Terraform state
+description: Link every resource on the map to the Terraform code that created it.
+pcx_content_type: how-to
+products:
+  - connect
+sidebar:
+  order: 4
+---
+
+With Terraform state connected, every resource shows the module and file that defines it, and drift shows up as <Pill variant="warn">Needs review</Pill>.
+
+## Supported backends
+
+- Terraform Cloud and HCP Terraform
+- Azure Storage (`azurerm` backend)
+- Amazon S3 (`s3` backend)
+
+## Connect a backend
+
+<Tabs syncKey="tf-backend">
+  <TabItem label="HCP Terraform">
+    ```sh
+    orb connect terraform --cloud --organization acme-demo
+    ```
+  </TabItem>
+  <TabItem label="Azure Storage">
+    ```sh
+    orb connect terraform --azurerm --storage-account acmetfstate --container tfstate
+    ```
+  </TabItem>
+  <TabItem label="Amazon S3">
+    ```sh
+    orb connect terraform --s3 --bucket acme-demo-tfstate --region us-east-1
+    ```
+  </TabItem>
+</Tabs>
+
+Orbitum reads state files only. It never runs `plan` or `apply`.

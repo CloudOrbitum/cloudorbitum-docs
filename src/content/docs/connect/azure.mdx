@@ -1,0 +1,53 @@
+---
+title: Connect Azure
+description: Map an Azure subscription with the built-in Reader role.
+pcx_content_type: how-to
+products:
+  - connect
+sidebar:
+  order: 1
+---
+
+<Pill variant="azure">Azure</Pill> Orbitum reads resources, networks and Defender findings through a service principal with the **Reader** role.
+
+## Before you start
+
+- Owner or User Access Administrator on the subscription
+- The subscription ID, for example `00000000-aaaa-4bbb-8ccc-000000000000`
+
+## Connect a subscription
+
+<Steps>
+  <Step title="Generate the role">
+    ```sh
+    orb connect azure --subscription 00000000-aaaa-4bbb-8ccc-000000000000
+    ```
+
+    The CLI writes `orbitum-reader.tf` to the current folder. Review it before you apply it.
+  </Step>
+  <Step title="Apply it">
+    ```sh
+    terraform init && terraform apply
+    ```
+  </Step>
+  <Step title="Confirm the connection">
+    ```sh
+    orb connections list
+    ```
+
+    The subscription shows <Pill variant="ok">Connected</Pill> once the first discovery finishes, usually within 5 minutes.
+  </Step>
+</Steps>
+
+## What Orbitum reads
+
+| Source | Used for |
+| --- | --- |
+| Azure Resource Graph | Resources and their relationships |
+| Network watcher | Routes, peering and public IPs |
+| Microsoft Defender for Cloud | Security findings |
+| Activity log | Who changed what, and when |
+
+## Troubleshooting
+
+**Connection failed. Check the role assignment.** The service principal needs Reader at the subscription scope, not on a resource group. Run `orb connections check azure` to see which permission is missing.

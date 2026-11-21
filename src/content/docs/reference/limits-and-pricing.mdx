@@ -1,0 +1,24 @@
+---
+title: Limits and pricing
+description: API rate limits, quotas per plan and how usage is counted.
+pcx_content_type: reference
+---
+
+## Rate limits
+
+| Plan | Requests per minute | Graph queries per minute |
+| --- | --- | --- |
+| Free | 120 | 20 |
+| Team | 1,200 | 200 |
+| Enterprise | 12,000 | 2,000 |
+
+When you go over a limit, the API answers `429` with a `Retry-After` header in seconds.
+
+## Quotas
+
+| Resource | Free | Team | Enterprise |
+| --- | --- | --- | --- |
+| Connected cloud accounts | 2 | 25 | Unlimited |
+| Runbooks | 5 | 100 | Unlimited |
+| Sandbox tenants | 0 | 2 | 10 |
+| Audit log retention | 30 days | 400 days | 400 days |

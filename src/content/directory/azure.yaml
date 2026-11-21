@@ -1,0 +1,6 @@
+name: Azure
+description: Map subscriptions with the Reader role.
+url: /connect/azure/
+group: Connect
+icon: integrations
+dot: cloud-azure

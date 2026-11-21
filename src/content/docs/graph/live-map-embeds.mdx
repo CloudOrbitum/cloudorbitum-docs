@@ -1,0 +1,32 @@
+---
+title: Live map embeds
+description: Embed a filtered, read-only live map in your own dashboards and runbooks.
+pcx_content_type: how-to
+products:
+  - graph
+---
+
+An embed shows the live map filtered to a query. It is read-only and signed, so it works in internal wikis and dashboards without a sign-in.
+
+## Create an embed
+
+```sh
+orb maps embed create --query "resources where tag.team = \"payments\"" --expires 90d
+```
+
+The command prints an `<iframe>` snippet:
+
+```html
+<iframe
+  src="https://map.cloudorbitum.com/embed/emb_7Kq2..."
+  title="Payments estate"
+  width="100%"
+  height="480"
+></iframe>
+```
+
+## Revoke an embed
+
+```sh
+orb maps embed revoke emb_7Kq2
+```

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resources · Orbitum developer docs</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../css/orbitum-devsite.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+</style>
+<!-- Rendered by dc-lite.js from the canvas artboard Resources.html -->
+</head>
+<body>
+<div id="dc-root"></div>
+<template data-dc-main>
+<div class="orb dev {{themeClass}}" style="width: 100%; min-height: 2300px">
+<header class="dhead">
+  <a class="dbrand" href="Main.html"><span class="logo"><i></i></span>Orbitum <span class="badge" style="font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em">DOCS</span></a>
+  <nav class="dnav" aria-label="Main">
+    <a href="Directory.html">Directory</a>
+    <a href="ApiRef.html">API</a>
+    <a href="Changelog.html">Changelog</a>
+  </nav>
+  <button type="button" class="dsearch" onClick="{{openSearch}}" aria-haspopup="dialog" aria-label="Search the docs" style="margin-left: auto">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0 M21 21l-6 -6"></path></svg>
+    <span style="flex: 1; min-width: 0">Search</span>
+    <span class="keys" aria-hidden="true"><span class="kbd">Ctrl</span><span class="kbd">K</span></span>
+  </button>
+  <a class="ibtn" href="#github" aria-label="GitHub"><svg viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M208.31 75.68A59.78 59.78 0 0 0 202.93 28a8 8 0 0 0-6.93-4a59.75 59.75 0 0 0-48 24h-24a59.75 59.75 0 0 0-48-24a8 8 0 0 0-6.93 4a59.78 59.78 0 0 0-5.38 47.68A58.14 58.14 0 0 0 56 104v8a56.06 56.06 0 0 0 48.44 55.47A39.8 39.8 0 0 0 96 192v8H72a24 24 0 0 1-24-24a40 40 0 0 0-40-40a8 8 0 0 0 0 16a24 24 0 0 1 24 24a40 40 0 0 0 40 40h24v16a8 8 0 0 0 16 0v-40a24 24 0 0 1 48 0v40a8 8 0 0 0 16 0v-40a39.8 39.8 0 0 0-8.44-24.53A56.06 56.06 0 0 0 216 112v-8a58.14 58.14 0 0 0-7.69-28.32M200 112a40 40 0 0 1-40 40h-48a40 40 0 0 1-40-40v-8a41.74 41.74 0 0 1 6.9-22.48a8 8 0 0 0 1.1-7.69a43.8 43.8 0 0 1 .79-33.58a43.88 43.88 0 0 1 32.32 20.06a8 8 0 0 0 6.71 3.69h32.35a8 8 0 0 0 6.74-3.69a43.87 43.87 0 0 1 32.32-20.06a43.8 43.8 0 0 1 .77 33.58a8.09 8.09 0 0 0 1 7.65a41.7 41.7 0 0 1 7 22.52Z"></path></svg></a>
+  <button type="button" class="ibtn" style="width: 32px; height: 32px; border-radius: 6px" aria-label="{{themeLabel}}" title="{{themeLabel}}" onClick="{{cycleTheme}}"><sc-if value="{{tSun}}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M120 40V16a8 8 0 0 1 16 0v24a8 8 0 0 1-16 0m72 88a64 64 0 1 1-64-64a64.07 64.07 0 0 1 64 64m-16 0a48 48 0 1 0-48 48a48.05 48.05 0 0 0 48-48M58.34 69.66a8 8 0 0 0 11.32-11.32l-16-16a8 8 0 0 0-11.32 11.32Zm0 116.68l-16 16a8 8 0 0 0 11.32 11.32l16-16a8 8 0 0 0-11.32-11.32M192 72a8 8 0 0 0 5.66-2.34l16-16a8 8 0 0 0-11.32-11.32l-16 16A8 8 0 0 0 192 72m5.66 114.34a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32-11.32ZM48 128a8 8 0 0 0-8-8H16a8 8 0 0 0 0 16h24a8 8 0 0 0 8-8m80 80a8 8 0 0 0-8 8v24a8 8 0 0 0 16 0v-24a8 8 0 0 0-8-8m112-88h-24a8 8 0 0 0 0 16h24a8 8 0 0 0 0-16"></path></svg></sc-if><sc-if value="{{tMoon}}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M233.54 142.23a8 8 0 0 0-8-2a88.08 88.08 0 0 1-109.8-109.8a8 8 0 0 0-10-10a104.84 104.84 0 0 0-52.91 37A104 104 0 0 0 136 224a103.1 103.1 0 0 0 62.52-20.88a104.84 104.84 0 0 0 37-52.91a8 8 0 0 0-1.98-7.98m-44.64 48.11A88 88 0 0 1 65.66 67.11a89 89 0 0 1 31.4-26A106 106 0 0 0 96 56a104.11 104.11 0 0 0 104 104a106 106 0 0 0 14.92-1.06a89 89 0 0 1-26.02 31.4"></path></svg></sc-if><sc-if value="{{tAuto}}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M208 40H48a24 24 0 0 0-24 24v112a24 24 0 0 0 24 24h160a24 24 0 0 0 24-24V64a24 24 0 0 0-24-24m8 136a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V64a8 8 0 0 1 8-8h160a8 8 0 0 1 8 8Zm-48 48a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8"></path></svg></sc-if></button>
+  <a class="btn s dcta" href="#login" style="text-decoration: none">DASHBOARD</a>
+</header>
+<div class="dbody">
+
+  <main class="dmain" style="background: var(--bg)">
+    <div style="width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 max(24px, 4vw) 96px; box-sizing: border-box; border-left: 1px dashed var(--line); border-right: 1px dashed var(--line); background: var(--panel)">
+      <header style="max-width: 672px; margin: 0 auto; padding-top: 56px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px">
+        <h1 style="font-size: 52px; font-weight: 500; line-height: 1.05; letter-spacing: -.02em">Resources</h1>
+        <p style="margin: 0; max-width: 448px; font-size: 18px; line-height: 1.6; color: var(--sub)">Tutorials, videos, reference architectures and learning paths for building on Orbitum.</p>
+      </header>
+      <div style="margin-top: 48px; padding-top: 40px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+        <aside style="flex: 0 1 208px; min-width: 180px; display: flex; flex-direction: column; gap: 24px">
+          <label style="position: relative; display: block">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 12px; top: 12px; color: var(--sub)"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0 M21 21l-6 -6"></path></svg>
+            <input type="text" aria-label="Search resources" placeholder="Search resources…" value="{{q}}" onInput="{{onSearch}}" style="box-sizing: border-box; width: 100%; height: 40px; padding: 0 12px 0 36px; border: 1px solid var(--line3); border-radius: 8px; background: var(--panel); font: inherit; font-size: 14px; color: var(--text); outline: none">
+          </label>
+          <fieldset style="margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+            <legend style="padding: 0 8px; margin-bottom: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--sub)">Content type</legend>
+            <sc-for list="{{types}}" as="g" hint-placeholder-count="6">
+              <label style="display: inline-flex; align-items: flex-start; gap: 8px; cursor: pointer; font-size: 14px; color: var(--text)">
+                <input type="checkbox" checked="{{g.on}}" onChange="{{g.toggle}}" style="width: 16px; height: 16px; margin: 2px 0 0; accent-color: var(--text); flex-shrink: 0">{{g.name}}
+              </label>
+            </sc-for>
+          </fieldset>
+          <fieldset style="margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+            <legend style="padding: 0 8px; margin-bottom: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--sub)">Products</legend>
+            <sc-for list="{{prods}}" as="g" hint-placeholder-count="6">
+              <label style="display: inline-flex; align-items: flex-start; gap: 8px; cursor: pointer; font-size: 14px; color: var(--text)">
+                <input type="checkbox" checked="{{g.on}}" onChange="{{g.toggle}}" style="width: 16px; height: 16px; margin: 2px 0 0; accent-color: var(--text); flex-shrink: 0">{{g.name}}
+              </label>
+            </sc-for>
+          </fieldset>
+        </aside>
+        <div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+          <span style="font-size: 13px; color: var(--sub)">{{count}}</span>
+          <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; padding: 40px 0; color: var(--sub)">No resources match. Clear the search or the filters.</p></sc-if>
+          <div style="position: relative; border-top: 1px solid var(--line); border-left: 1px solid var(--line)">
+            <sc-for list="{{shown}}" as="r" hint-placeholder-count="8">
+              <div style="border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--panel)">
+                <a class="hcard" href="{{r.href}}" style="display: flex; flex-direction: column; gap: 4px; padding: 20px; color: inherit; text-decoration: none">
+                  <span style="font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; font-size: 11px; color: var(--sub)">{{r.tags}}</span>
+                  <strong class="hcta" style="font-size: 16px; font-weight: 600; color: var(--text)">{{r.title}}</strong>
+                  <p style="margin: 0; font-size: 14px; line-height: 1.6; color: var(--sub); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden">{{r.desc}}</p>
+                  <span style="font-size: 12px; color: var(--sub)">{{r.meta}}</span>
+                </a>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<sc-if value="{{searchOpen}}" hint-placeholder-val="{{ false }}"><dc-import name="SearchDialog" open="{{ true }}" on-close="{{closeSearch}}" theme="{{themeClass}}" hint-size="0px,0px"></dc-import></sc-if>
+<footer aria-label="Site footer" style="width: 100%; background: var(--bg)"><div aria-hidden="true" style="height: 1px; width: 100%; background-image: linear-gradient(to right, var(--line3) 50%, transparent 50%); background-size: 32px 1px; background-repeat: repeat-x"></div><div style="padding: 32px 24px 0"><div style="max-width: 1480px; margin: 0 auto; display: flex; flex-direction: column; align-items: flex-start; gap: 32px; padding-bottom: 32px"><a href="Main.html" aria-label="Orbitum home" style="display: inline-flex; align-items: center; gap: 8px; color: var(--text); text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase"><span class="logo" style="width: 16px; height: 16px; margin: 0"><i style="left: 3px; top: 3px; width: 6px; height: 6px"></i></span>Orbitum</a><nav aria-label="Footer" style="align-self: flex-end; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 250px)); justify-content: end; gap: 32px; width: 100%; max-width: 1100px"><div style="display: flex; flex-direction: column; gap: 40px; min-width: 0"><div style="display: flex; flex-direction: column; min-width: 0"><div style="display: flex; padding-bottom: 12px"><span style="font-size: 13px; line-height: 1; font-weight: 500; color: var(--sub)">Getting started</span></div><a class="hfoot" href="#pricing" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Pricing</a><a class="hfoot" href="#contact-sales" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Contact sales</a><a class="hfoot" href="#partners" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Partners</a><a class="hfoot" href="#find-a-partner" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Find a partner</a><a class="hfoot" href="#startups" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Startups</a><a class="hfoot" href="#book-a-demo" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Book a demo</a></div><div style="display: flex; flex-direction: column; min-width: 0"><div style="display: flex; padding-bottom: 12px"><span style="font-size: 13px; line-height: 1; font-weight: 500; color: var(--sub)">Company</span></div><a class="hfoot" href="#about" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">About</a><a class="hfoot" href="#careers" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Careers</a><a class="hfoot" href="#investors" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Investors</a><a class="hfoot" href="#press" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Press</a><a class="hfoot" href="#press-kit" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Press kit</a><a class="hfoot" href="#brand-assets" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Brand assets</a></div></div><div style="display: flex; flex-direction: column; gap: 40px; min-width: 0"><div style="display: flex; flex-direction: column; min-width: 0"><div style="display: flex; padding-bottom: 12px"><span style="font-size: 13px; line-height: 1; font-weight: 500; color: var(--sub)">Product</span></div><a class="hfoot" href="#live-map" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Live map</a><a class="hfoot" href="#security" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Security</a><a class="hfoot" href="#mission-control" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Mission control</a><a class="hfoot" href="#simulation-lab" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Simulation lab</a><a class="hfoot" href="#cost-and-carbon" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Cost and carbon</a></div><div style="display: flex; flex-direction: column; min-width: 0"><div style="display: flex; padding-bottom: 12px"><span style="font-size: 13px; line-height: 1; font-weight: 500; color: var(--sub)">Trust</span></div><a class="hfoot" href="#trust-center" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Trust center</a><a class="hfoot" href="#compliance-resources" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Compliance resources</a><a class="hfoot" href="#data-protection" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Data protection</a><a class="hfoot" href="#responsible-ai" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Responsible AI</a><a class="hfoot" href="#transparency-report" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Transparency report</a><a class="hfoot" href="#report-abuse" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Report abuse</a></div></div><div style="display: flex; flex-direction: column; gap: 40px; min-width: 0"><div style="display: flex; flex-direction: column; min-width: 0"><div style="display: flex; padding-bottom: 12px"><span style="font-size: 13px; line-height: 1; font-weight: 500; color: var(--sub)">Resources</span></div><a class="hfoot" href="#case-studies" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Case studies</a><a class="hfoot" href="#system-status" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">System status</a><a class="hfoot" href="#support" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Support</a><a class="hfoot" href="#events" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Events</a><a class="hfoot" href="#blog" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Blog</a></div><div style="display: flex; flex-direction: column; min-width: 0"><div style="display: flex; padding-bottom: 12px"><span style="font-size: 13px; line-height: 1; font-weight: 500; color: var(--sub)">Developers</span></div><a class="hfoot" href="Main.html" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Documentation</a><a class="hfoot" href="ApiRef.html" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">API reference</a><a class="hfoot" href="Changelog.html" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Changelog</a><a class="hfoot" href="#community" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Community</a><a class="hfoot" href="#design-system" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Design system</a></div></div><div style="display: flex; flex-direction: column; gap: 40px; min-width: 0"><div style="display: flex; flex-direction: column; min-width: 0"><div style="display: flex; padding-bottom: 12px"><span style="font-size: 13px; line-height: 1; font-weight: 500; color: var(--sub)">Solutions</span></div><a class="hfoot" href="#cloud-security-posture" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Cloud security posture</a><a class="hfoot" href="#incident-response" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Incident response</a><a class="hfoot" href="#finops" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">FinOps</a><a class="hfoot" href="#platform-engineering" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Platform engineering</a><a class="hfoot" href="#chaos-engineering" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Chaos engineering</a><a class="hfoot" href="#data-residency" style="padding: 6px 0; font-size: 15px; line-height: 1.375; color: var(--text); text-decoration: none">Data residency</a></div></div></nav></div></div><div aria-hidden="true" style="height: 1px; width: 100%; background-image: linear-gradient(to right, var(--line3) 50%, transparent 50%); background-size: 32px 1px; background-repeat: repeat-x"></div><div style="padding: 16px 24px 16px"><div style="max-width: 1480px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; font-size: 14px; line-height: 1.25; color: var(--sub)"><span>© 2026 Orbitum</span><div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 0; margin-right: 16px"><a class="hlegal" href="#privacy" style="color: var(--text); font-weight: 500; text-decoration: none">Privacy policy</a><span aria-hidden="true" style="margin: 0 6px">|</span><a class="hlegal" href="#security" style="color: var(--sub); text-decoration: none">Report security issues</a><span aria-hidden="true" style="margin: 0 6px">|</span><a class="hlegal" href="#terms" style="color: var(--sub); text-decoration: none">Terms of use</a><span aria-hidden="true" style="margin: 0 6px">|</span><a class="hlegal" href="#trademark" style="color: var(--sub); text-decoration: none">Trademark</a><span aria-hidden="true" style="margin: 0 6px">|</span><button type="button" class="hlegal" style="margin: 0; padding: 0; border: none; background: none; font: inherit; color: var(--sub); cursor: pointer">Cookie preferences</button></div></div></div></footer>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"System theme (used when the toggle is on System)"},"$preview":{"width":1440,"height":2300}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { q: '', t: {}, p: {} }; }
+  renderVals() {
+    var tv = this.themeVals();
+    var self = this;
+    var items = [{"title": "Secure a multi-cloud estate", "type": "Learning path", "prods": ["Security", "Graph API"], "href": "LearningPath.html", "desc": "Six modules that take you from a first exposure scan to closing attack paths through pull requests.", "meta": "6 modules \u00b7 2 h", "tags": "Learning path \u00b7 Security, Graph API"}, {"title": "Observability across Azure and AWS with Orbitum", "type": "Reference architecture", "prods": ["Graph API", "Alerts", "Integrations"], "href": "RefArch.html", "desc": "How Orbitum combines cloud inventories, edge traffic and Terraform state into one graph, and where alerts, agents and approvals fit.", "meta": "18 min read", "tags": "Reference architecture \u00b7 Graph API, Alerts, Integrations"}, {"title": "Send learned alerts to PagerDuty with webhooks", "type": "Tutorial", "prods": ["Alerts", "Integrations"], "href": "#t1", "desc": "Create a signed webhook, verify the signature in a small receiver and route alerts by severity.", "meta": "20 min", "tags": "Tutorial \u00b7 Alerts, Integrations"}, {"title": "Write your first runbook and replay an incident", "type": "Tutorial", "prods": ["Runbooks"], "href": "#t2", "desc": "Describe a fix in one sentence, review the generated steps and replay it against a real past incident.", "meta": "15 min", "tags": "Tutorial \u00b7 Runbooks"}, {"title": "A ten-minute tour of the live map", "type": "Video", "prods": ["Live map"], "href": "#v1", "desc": "Regions, layers, alerts and the 3D view, explained on the acme-demo estate.", "meta": "10 min", "tags": "Video \u00b7 Live map"}, {"title": "Cut cloud spend without breaking reliability targets", "type": "Solution guide", "prods": ["Cost and carbon"], "href": "#s1", "desc": "Find savings, test them against your SLOs and apply them as reviewed pull requests.", "meta": "12 min read", "tags": "Solution guide \u00b7 Cost and carbon"}, {"title": "Agent approvals in regulated environments", "type": "Reference architecture", "prods": ["Agents", "Security"], "href": "#r2", "desc": "Separation of duties, audit evidence and approval policies for teams that answer to an auditor.", "meta": "14 min read", "tags": "Reference architecture \u00b7 Agents, Security"}, {"title": "Rehearse a regional failover", "type": "Tutorial", "prods": ["Simulation lab"], "href": "#t3", "desc": "Create a sandbox tenant, take a region down at peak and measure the recovery time.", "meta": "25 min", "tags": "Tutorial \u00b7 Simulation lab"}, {"title": "Designing alert thresholds people trust", "type": "Design guide", "prods": ["Alerts"], "href": "#d1", "desc": "Baselines, evidence and quiet modes: how to make alerts that explain themselves.", "meta": "9 min read", "tags": "Design guide \u00b7 Alerts"}, {"title": "Build with Orbitum agents and MCP", "type": "Learning path", "prods": ["Agents", "Integrations"], "href": "#l2", "desc": "Connect a coding agent, give it a mission and keep every change behind an approval.", "meta": "5 modules \u00b7 90 min", "tags": "Learning path \u00b7 Agents, Integrations"}, {"title": "Check attack paths in CI", "type": "Tutorial", "prods": ["Graph API", "Security"], "href": "#t4", "desc": "Fail a pull request when it opens a new path from the internet to customer data.", "meta": "15 min", "tags": "Tutorial \u00b7 Graph API, Security"}, {"title": "Data residency checks in practice", "type": "Video", "prods": ["Security"], "href": "#v2", "desc": "Flag data flows that cross a border before they become an audit finding.", "meta": "7 min", "tags": "Video \u00b7 Security"}];
+    var TY = ["Design guide", "Learning path", "Reference architecture", "Solution guide", "Tutorial", "Video"], PR = ["Agents", "Alerts", "Cost and carbon", "Graph API", "Integrations", "Live map", "Runbooks", "Security", "Simulation lab"];
+    var st = this.state;
+    var anyT = TY.some(function (n) { return st.t[n]; }), anyP = PR.some(function (n) { return st.p[n]; });
+    var q = (st.q || '').toLowerCase();
+    var shown = items.filter(function (r) {
+      if (anyT && !st.t[r.type]) return false;
+      if (anyP && !r.prods.some(function (p) { return st.p[p]; })) return false;
+      if (q && (r.title + ' ' + r.desc + ' ' + r.tags).toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+    var mk = function (key) { return function (n) { return { name: n, on: !!st[key][n], toggle: function () { var x = Object.assign({}, self.state[key]); x[n] = !x[n]; var o = {}; o[key] = x; self.setState(o); } }; }; };
+    return {
+      fbAsk: !(this.state && this.state.fb), fbDone: !!(this.state && this.state.fb),
+      fbMsg: (this.state && this.state.fb === 'no') ? 'Tell us what was missing with Report issue.' : 'It helps us improve these docs.',
+      fbYes: function () { self.setState({ fb: 'yes' }); }, fbNo: function () { self.setState({ fb: 'no' }); },
+      q: st.q, shown: shown, empty: shown.length === 0, count: shown.length + ' of ' + items.length + ' resources',
+      types: TY.map(mk('t')), prods: PR.map(mk('p')),
+      onSearch: function (e) { self.setState({ q: e.target.value }); },
+      themeClass: tv.cls, searchOpen: !!(this.state && this.state.searchOpen), openSearch: () => this.setState({ searchOpen: true }), closeSearch: () => this.setState({ searchOpen: false }), tSun: tv.sun, tMoon: tv.moon, tAuto: tv.auto, themeLabel: tv.label, cycleTheme: tv.cycle
+    };
+  }
+
+  themeVals() {
+    var self = this;
+    var mode = (this.state && this.state.theme) || 'system';
+    var dark = mode === 'dark' || (mode === 'system' && !!this.props.dark);
+    var next = { system: 'light', light: 'dark', dark: 'system' }[mode];
+    return {
+      cls: dark ? 'dark' : '', sun: mode === 'light', moon: mode === 'dark', auto: mode === 'system',
+      label: 'Theme: ' + mode + '. Activate to switch to ' + next + '.',
+      cycle: function () { self.setState({ theme: next }); }
+    };
+  }
+}
+</script>
+
+<template data-dc-component="SearchDialog">
+<div class="orb dev {{theme}}" style="font-family: var(--font-sans); color: var(--text)">
+<sc-if value="{{open}}" hint-placeholder-val="{{ true }}">
+<div class="sdlg-scrim" onClick="{{onScrim}}">
+  <div class="sdlg" role="dialog" aria-modal="true" aria-label="Search documentation" onClick="{{stop}}">
+    <label class="sdlg-in">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0 M21 21l-6 -6"></path></svg>
+      <input type="search" ref="{{setInput}}" value="{{q}}" onInput="{{onInput}}" onKeyDown="{{onKey}}" placeholder="Search documentation…" aria-label="Search documentation" aria-controls="sdlg-results" aria-activedescendant="{{activeId}}" autocomplete="off">
+    </label>
+    <div class="sdlg-list" id="sdlg-results" role="listbox" aria-label="{{section}}">
+      <div class="sdlg-sec"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v4l2 2 M3.05 11a9 9 0 1 1 .5 4 M3 4v5h5"></path></svg><span>{{section}}</span></div>
+      <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}"><div class="sdlg-empty">No results for “{{q}}”. Try another word.</div></sc-if>
+      <sc-for list="{{shown}}" as="it" hint-placeholder-count="3">
+        <div class="{{it.cls}}" role="option" aria-selected="{{it.sel}}" onMouseEnter="{{it.enter}}" style="grid-template-columns: minmax(0, 1fr) 36px">
+          <a id="{{it.id}}" href="{{it.href}}" style="display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 12px; min-width: 0; color: inherit; text-decoration: none">
+          <span class="hs"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l14 0 M5 15l14 0 M11 4l-4 16 M17 4l-4 16"></path></svg></span>
+          <span style="min-width: 0"><b>{{it.title}}</b><span style="display: -webkit-box; margin-top: 6px; font-size: 14.5px; line-height: 1.6; color: var(--sub); -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden">{{it.desc}}</span></span>
+          </a>
+          <button type="button" class="sdlg-star" aria-label="{{it.starLabel}}" aria-pressed="{{it.starred}}" onClick="{{it.toggleStar}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="{{it.starFill}}" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17.75l-6.17 3.24l1.18 -6.87l-5 -4.86l6.9 -1l3.09 -6.26l3.09 6.26l6.9 1l-5 4.86l1.18 6.87z"></path></svg></button>
+        </div>
+      </sc-for>
+    </div>
+    <div class="sdlg-foot">
+      <span class="k"><span class="sdlg-kbd">↑</span><span class="sdlg-kbd">↓</span>Navigate</span>
+      <span class="k"><span class="sdlg-kbd">↵</span>Select</span>
+      <span class="k"><span class="sdlg-kbd">Esc</span>Close</span>
+      <span style="flex: 1"></span>
+      <span class="k">Powered by Orbitum search <span class="logo" aria-hidden="true" style="width: 16px; height: 16px; margin: 0 0 0 4px"><i style="left: 3px; top: 3px; width: 6px; height: 6px"></i></span></span>
+    </div>
+  </div>
+</div>
+</sc-if>
+</div>
+</template>
+<script type="text/x-dc" data-dc-for="SearchDialog" data-props='{"open":{"editor":"boolean","default":true},"onClose":{"editor":null},"theme":{"editor":null},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { q: '', active: 1, stars: {} }; }
+  renderVals() {
+    var self = this;
+    var all = [{"id": "r0", "title": "Quickstart", "href": "Docs.html", "desc": "Install the CLI, connect one Azure subscription or AWS account with a read-only key, and run your first graph query."}, {"id": "r1", "title": "Query the graph", "href": "ApiRef.html", "desc": "Run a query against the resource graph and get back resources, relationships or paths. Requires the graph:read scope."}, {"id": "r2", "title": "Error 403: the key does not have the required scope", "href": "Error403.html", "desc": "The key is valid but was created without the scope the call needs. Check the key, add the missing scope, then retry."}, {"id": "r3", "title": "Orbitum developer docs", "href": "Main.html", "desc": "Query the resource graph, react to alerts, ship runbooks and give agents safe access to your Azure and AWS estate."}, {"id": "r4", "title": "Agent setup", "href": "AgentSetup.html", "desc": "Connect your AI coding agent to Orbitum, then query your estate, write runbooks and open fixes from your editor or terminal."}, {"id": "r5", "title": "Directory", "href": "Directory.html", "desc": "Everything you need to map, secure and run your cloud with Orbitum, grouped by product."}, {"id": "r6", "title": "Changelog", "href": "Changelog.html", "desc": "New features, changes and deprecations across the API, CLI, SDKs, agents and the Simulation lab."}, {"id": "r7", "title": "Resources", "href": "Resources.html", "desc": "Tutorials, videos, reference architectures and learning paths for building on Orbitum."}, {"id": "r8", "title": "Secure a multi-cloud estate", "href": "LearningPath.html", "desc": "Six modules from a first exposure scan to closing attack paths through reviewed pull requests."}, {"id": "r9", "title": "Observability across Azure and AWS with Orbitum", "href": "RefArch.html", "desc": "How Orbitum combines cloud inventories, edge traffic and Terraform state into one graph."}, {"id": "r10", "title": "Support", "href": "Support.html", "desc": "Sections for support material, Orbitum status and popular answers."}, {"id": "r11", "title": "Contacting Orbitum Support", "href": "ContactSupport.html", "desc": "Support by plan, response times, the support bundle and how to open a case."}];
+    var st = this.state;
+    var q = (st.q || '').trim().toLowerCase();
+    var list = q ? all.filter(function (p) { return (p.title + ' ' + p.desc).toLowerCase().indexOf(q) >= 0; }) : all.slice(0, 3);
+    var active = Math.min(st.active, Math.max(list.length - 1, 0));
+    var close = function () { if (self.props.onClose) self.props.onClose(); };
+    var shown = list.map(function (p, i) {
+      var on = i === active, starred = !!st.stars[p.id];
+      return { id: p.id, title: p.title, desc: p.desc, href: p.href, cls: on ? 'sdlg-item on' : 'sdlg-item', sel: on ? 'true' : 'false',
+        starred: starred ? 'true' : 'false', starFill: starred ? 'currentColor' : 'none', starLabel: starred ? 'Remove from favourites' : 'Add to favourites',
+        enter: function () { if (self.state.active !== i) self.setState({ active: i }); },
+        toggleStar: function (e) { e.stopPropagation(); var s = Object.assign({}, self.state.stars); s[p.id] = !s[p.id]; self.setState({ stars: s }); } };
+    });
+    return {
+      open: this.props.open === undefined ? true : !!this.props.open,
+      theme: this.props.theme || '',
+      q: st.q, shown: shown, empty: q && list.length === 0, section: q ? 'Results' : 'Recent',
+      activeId: list[active] ? list[active].id : '',
+      setInput: function (el) { if (el && !self._focused) { self._focused = true; setTimeout(function () { try { el.focus(); } catch (e) {} }, 30); } },
+      onInput: function (e) { self.setState({ q: e.target.value, active: 0 }); },
+      onKey: function (e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); self.setState({ active: Math.min(active + 1, list.length - 1) }); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); self.setState({ active: Math.max(active - 1, 0) }); }
+        else if (e.key === 'Enter') { e.preventDefault(); var el = list[active] && document.getElementById(list[active].id); if (el) el.click(); }
+        else if (e.key === 'Escape') { e.preventDefault(); close(); }
+      },
+      onScrim: function () { close(); },
+      stop: function (e) { e.stopPropagation(); }
+    };
+  }
+}
+</script>
+<script src="../js/dc-lite.js"></script>
+</body>
+</html>

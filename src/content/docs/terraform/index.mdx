@@ -1,0 +1,39 @@
+---
+title: Terraform provider
+description: Manage Orbitum connections, alert destinations and runbooks as Terraform code.
+pcx_content_type: reference
+sidebar:
+  label: Terraform
+---
+
+```hcl title="main.tf"
+terraform {
+  required_providers {
+    orbitum = {
+      source  = "cloudorbitum/orbitum"
+      version = "~> 1.4"
+    }
+  }
+}
+
+provider "orbitum" {
+  account = "acme-demo"
+}
+
+resource "orbitum_alert_destination" "oncall" {
+  type         = "webhook"
+  url          = "https://hooks.example.com/orbitum"
+  min_severity = "high"
+}
+```
+
+Set the API key in `ORBITUM_API_KEY`. The provider never reads it from a file.
+
+## Resources
+
+| Resource | Manages |
+| --- | --- |
+| `orbitum_connection` | A cloud or Terraform connection |
+| `orbitum_alert_destination` | Where alerts go |
+| `orbitum_runbook` | A runbook and its trigger |
+| `orbitum_api_key` | A scoped API key |

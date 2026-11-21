@@ -1,0 +1,116 @@
+---
+/**
+ * <ChangelogEntries> — every entry in src/content/changelog/, newest first,
+ * as on developers.cloudflare.com/changelog. The newest entry gets the live
+ * pulse from the mockup (assets/pages/Changelog.html).
+ *
+ * Add an entry: create src/content/changelog/<product>/<YYYY-MM-DD>-<slug>.mdx.
+ */
+import { getCollection, render } from "astro:content";
+import { components } from "../../components";
+
+const entries = (await getCollection("changelog")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const directory = new Map((await getCollection("directory")).map((d) => [d.id, d.data.name]));
+const fmt = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" });
+const rendered = await Promise.all(entries.map(async (e) => ({ e, ...(await render(e)) })));
+---
+
+<ol class="orb-changelog not-prose">
+  {rendered.map(({ e, Content }, i) => (
+    <li id={e.id.split("/").pop()}>
+      <div class="orb-cl-meta">
+        <span class="orb-cl-dot" aria-hidden="true">
+          {i === 0 && <span class="pulse"></span>}
+        </span>
+        <time datetime={e.data.date.toISOString().slice(0, 10)}>{fmt.format(e.data.date)}</time>
+      </div>
+      <div class="orb-cl-body">
+        <div class="flex flex-wrap gap-2">
+          {e.data.products.map((p) => <span class="orb-pill">{directory.get(p) ?? p}</span>)}
+        </div>
+        <h2>{e.data.title}</h2>
+        <div class="prose-sm docs-content">
+          <Content components={components} />
+        </div>
+        {e.data.link && <a class="orb-cl-link" href={e.data.link}>Read the docs →</a>}
+      </div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .orb-changelog {
+    list-style: none;
+    margin: var(--sp-6) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .orb-changelog > li {
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: var(--sp-6);
+    padding: var(--sp-6) 0;
+    border-top: 1px solid var(--line);
+    scroll-margin-top: calc(var(--nb-header-height) + 16px);
+  }
+  .orb-cl-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    align-self: start;
+    font-size: var(--fs-13);
+    color: var(--sub);
+    padding-top: 4px;
+  }
+  .orb-cl-dot {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--status-ok);
+    flex-shrink: 0;
+  }
+  .orb-cl-dot .pulse {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: var(--status-ok);
+    animation: orb-pulse 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+  @keyframes orb-pulse {
+    0% { opacity: 0.6; transform: scale(0.4); }
+    100% { opacity: 0; transform: scale(1.6); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .orb-cl-dot .pulse { animation: none; }
+  }
+  .orb-cl-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    min-width: 0;
+  }
+  .orb-cl-body h2 {
+    margin: var(--sp-1) 0 0;
+    font-size: var(--fs-22);
+    font-weight: var(--fw-semibold);
+    color: var(--text);
+  }
+  .orb-cl-link {
+    font-size: var(--fs-13);
+    color: var(--sub2);
+    text-underline-offset: 4px;
+  }
+  .orb-cl-link:hover {
+    color: var(--text);
+  }
+  @media (max-width: 640px) {
+    .orb-changelog > li {
+      grid-template-columns: 1fr;
+      gap: var(--sp-2);
+    }
+  }
+</style>

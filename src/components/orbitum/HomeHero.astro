@@ -1,0 +1,77 @@
+---
+/**
+ * <HomeHero> — the home page hero from assets/pages/Main.html: title, lead,
+ * the primary action, a Copy prompt pill, and a terminal + output pair.
+ *
+ * Usage (MDX):
+ *   <HomeHero title="Orbitum developer docs" lead="…" primary={{ label: "Get started", href: "/get-started/quickstart/" }} />
+ */
+import { withBase } from "@cloudflare/nimbus-docs/runtime";
+
+interface Props {
+  title: string;
+  lead: string;
+  primary: { label: string; href: string };
+  /** Text copied by the "Copy prompt" pill, for pasting into a coding agent. */
+  prompt?: string;
+}
+
+const {
+  title,
+  lead,
+  primary,
+  prompt = "Read https://docs.cloudorbitum.com/llms.txt, then install the Orbitum CLI, sign in, and run my first graph query.",
+} = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<section class="not-prose grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] items-center pb-4">
+  <div class="flex flex-col gap-5">
+    <h1 class="m-0 text-foreground" style="font-size:clamp(36px,5vw,52px);line-height:1.1;font-weight:700;letter-spacing:-0.025em;margin:0">{title}</h1>
+    <p class="m-0 text-[17px] leading-[1.6] text-muted-foreground max-w-[520px]">{lead}</p>
+    <div class="flex flex-wrap items-center gap-3">
+      <a href={withBase(primary.href, base)} class="orb-btn p" style="height:40px;padding:0 16px;border-radius:var(--r-pill);font-size:var(--fs-14)">{primary.label}</a>
+      <button type="button" class="orb-btn" style="height:40px;padding:0 16px;border-radius:var(--r-pill);font-size:var(--fs-15);cursor:copy" data-orb-copy={prompt}>
+        <span class="flex gap-[3px]" aria-hidden="true">
+          {["Cl", "Cx", "Cu", "Oc"].map((a) => (
+            <span class="inline-flex items-center justify-center w-5 h-5 rounded-[5px] border border-border bg-[var(--line2)] text-[9px] font-bold text-[var(--sub2)]">{a}</span>
+          ))}
+        </span>
+        <span data-orb-copy-label>Copy prompt</span>
+      </button>
+    </div>
+  </div>
+  <div class="flex flex-col gap-3 min-w-0">
+    <div class="orb-term">
+      <div class="orb-term-head"><span>Terminal</span><span>sh</span></div>
+      <pre><span class="k">npm</span> install <span class="s">-g</span> @orbitum/cli
+<span class="k">orb</span> login
+<span class="k">orb</span> graph query <span class="s">"resources where exposed = true"</span></pre>
+    </div>
+    <div class="orb-term">
+      <div class="orb-term-head"><span>Output</span><span>text</span></div>
+      <pre>name            cloud   region          via
+agw-prod-ae     azure   australiaeast   skips edge
+vm-reports-ae   azure   australiaeast   public IP
+alb-api-use1    aws     us-east-1       behind edge</pre>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { mount } from "@cloudflare/nimbus-docs/client";
+  mount("[data-orb-copy]", (btn) => {
+    const label = btn.querySelector<HTMLElement>("[data-orb-copy-label]");
+    const onClick = async () => {
+      try {
+        await navigator.clipboard.writeText(btn.getAttribute("data-orb-copy") ?? "");
+        if (label) {
+          label.textContent = "Copied";
+          setTimeout(() => (label.textContent = "Copy prompt"), 1600);
+        }
+      } catch {}
+    };
+    btn.addEventListener("click", onClick);
+    return () => btn.removeEventListener("click", onClick);
+  });
+</script>

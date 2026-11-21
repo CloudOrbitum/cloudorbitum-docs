@@ -1,0 +1,5 @@
+name: CLI
+description: The orb command, for everything the console can do.
+url: /get-started/quickstart/
+group: Reference
+icon: query-console

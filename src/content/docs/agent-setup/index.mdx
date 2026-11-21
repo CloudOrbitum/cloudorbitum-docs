@@ -1,0 +1,51 @@
+---
+title: Agent setup
+description: Connect your AI coding agent to Orbitum, then query your estate, write runbooks and open fixes from your editor or terminal.
+pcx_content_type: how-to
+products:
+  - agents
+---
+
+Every page of these docs is also available as Markdown for agents: add `index.md` to any URL, or start from [/llms.txt](/llms.txt).
+
+<Tabs syncKey="agent">
+  <TabItem label="Claude Code">
+    ```sh
+    claude mcp add --transport http orbitum https://mcp.cloudorbitum.com/mcp
+    ```
+  </TabItem>
+  <TabItem label="Codex">
+    ```toml title="~/.codex/config.toml"
+    [mcp_servers.orbitum]
+    url = "https://mcp.cloudorbitum.com/mcp"
+    ```
+  </TabItem>
+  <TabItem label="Cursor">
+    ```json title=".cursor/mcp.json"
+    {
+      "mcpServers": {
+        "orbitum": { "url": "https://mcp.cloudorbitum.com/mcp" }
+      }
+    }
+    ```
+  </TabItem>
+  <TabItem label="OpenCode">
+    ```json title="opencode.json"
+    {
+      "mcp": {
+        "orbitum": { "type": "remote", "url": "https://mcp.cloudorbitum.com/mcp" }
+      }
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+## Try it
+
+Ask your agent:
+
+```txt
+Which of my Azure resources skip the edge, and why?
+```
+
+The agent calls `graph_query` with your key's scopes. See [MCP server](/agents/mcp-server/) for the full tool list.

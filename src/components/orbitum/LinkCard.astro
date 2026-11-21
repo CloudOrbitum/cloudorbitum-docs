@@ -1,0 +1,37 @@
+---
+/**
+ * <LinkCard> — a card that is a link, with an Orbitum icon, a short
+ * description and a call to action (the home and directory cards).
+ *
+ * Usage (MDX):
+ *   <LinkCard title="Connect Azure" href="/connect/azure/" icon="integrations" cta="Connect a subscription">
+ *     Map subscriptions with a read-only role.
+ *   </LinkCard>
+ */
+import OrbIcon from "@/components/OrbIcon.astro";
+import { withBase } from "@cloudflare/nimbus-docs/runtime";
+
+interface Props {
+  title: string;
+  href: string;
+  icon?: string;
+  cta?: string;
+  /** Token name for a coloured dot instead of the icon, e.g. `cloud-azure`. */
+  dot?: string;
+}
+const { title, href, icon, cta, dot } = Astro.props;
+const external = /^https?:/.test(href);
+---
+
+<a class="orb-card not-prose" href={external ? href : withBase(href, import.meta.env.BASE_URL)} target={external ? "_blank" : undefined} rel={external ? "noopener" : undefined}>
+  <span class="orb-card-title">
+    {dot ? (
+      <span class="orb-dot" style={`background: var(--${dot})`} aria-hidden="true"></span>
+    ) : icon && (
+      <span class="orb-hicon"><OrbIcon name={icon} /></span>
+    )}
+    {title}
+  </span>
+  <p><slot /></p>
+  {cta && <span class="orb-cta-link">{cta} →</span>}
+</a>

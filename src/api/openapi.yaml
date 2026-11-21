@@ -1,0 +1,284 @@
+# The Orbitum API spec behind /api. Starter content drawn from the developer-site
+# mockups (assets/pages/ApiRef.html); replace it with the published spec when
+# the API team ships one.
+openapi: 3.1.0
+info:
+  title: Orbitum API
+  version: 1.0.0
+  description: Query the resource graph, manage connections and alerts, and work with agent proposals.
+servers:
+  - url: https://api.cloudorbitum.com/v1
+security:
+  - bearer: []
+tags:
+  - name: Graph
+    description: Query resources, relationships and exposure.
+  - name: Connections
+    description: Cloud accounts and Terraform state Orbitum reads from.
+  - name: Alerts
+    description: Alerts raised from changes on the map.
+  - name: Approvals
+    description: Changes proposed by agents and runbooks.
+x-tagGroups:
+  - name: Map
+    tags: [Graph, Connections]
+  - name: Operate
+    tags: [Alerts, Approvals]
+paths:
+  /accounts/{account_id}/graph/query:
+    post:
+      operationId: queryGraph
+      summary: Query the graph
+      description: Run a query against the resource graph and get back resources, relationships or paths. Requires the `graph:read` scope.
+      tags: [Graph]
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [query]
+              properties:
+                query:
+                  type: string
+                  description: A graph query.
+                  example: resources where exposed = true
+                limit:
+                  type: integer
+                  minimum: 1
+                  maximum: 1000
+                  default: 100
+      responses:
+        "200":
+          description: The matching resources.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 2
+                  results:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Resource"
+        "403":
+          $ref: "#/components/responses/MissingScope"
+  /accounts/{account_id}/resources/{resource_id}:
+    get:
+      operationId: getResource
+      summary: Get a resource
+      description: One resource, with its relationships and the source of each fact.
+      tags: [Graph]
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+        - name: resource_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: agw-prod-ae
+      responses:
+        "200":
+          description: The resource.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Resource"
+        "404":
+          description: No resource with that id.
+  /accounts/{account_id}/connections:
+    get:
+      operationId: listConnections
+      summary: List connections
+      description: Every cloud account and Terraform backend connected to the account.
+      tags: [Connections]
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+      responses:
+        "200":
+          description: The connections.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Connection"
+    post:
+      operationId: createConnection
+      summary: Create a connection
+      description: Connect a cloud account or Terraform backend. Orbitum only needs read access.
+      tags: [Connections]
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [provider, external_id]
+              properties:
+                provider:
+                  type: string
+                  enum: [azure, aws, cloudflare, terraform]
+                external_id:
+                  type: string
+                  description: Subscription id, AWS account id, Cloudflare account id or Terraform workspace.
+                  example: 00000000-aaaa-4bbb-8ccc-000000000000
+      responses:
+        "201":
+          description: The new connection. Status is `checking` until the first discovery finishes.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Connection"
+  /accounts/{account_id}/alerts:
+    get:
+      operationId: listAlerts
+      summary: List alerts
+      description: Open and recent alerts, newest first. Requires the `alerts:read` scope.
+      tags: [Alerts]
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+        - name: severity
+          in: query
+          schema:
+            type: string
+            enum: [critical, high, info]
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [open, resolved]
+            default: open
+      responses:
+        "200":
+          description: The alerts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Alert"
+  /accounts/{account_id}/approvals/{approval_id}/approve:
+    post:
+      operationId: approveProposal
+      summary: Approve a proposal
+      description: Approve a change proposed by an agent or runbook. Requires the `approvals:write` scope. Destructive changes need a second approver.
+      tags: [Approvals]
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+        - name: approval_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: apr-311
+      responses:
+        "200":
+          description: The proposal, now approved or waiting for a second approver.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: apr-311
+                  status:
+                    type: string
+                    enum: [approved, waiting_for_second_approver]
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      description: "An API key from `orb keys create`. Send it as `Authorization: Bearer <key>`."
+  parameters:
+    AccountId:
+      name: account_id
+      in: path
+      required: true
+      description: The Orbitum account.
+      schema:
+        type: string
+        example: acme-demo
+  responses:
+    MissingScope:
+      description: The key is valid but doesn't have the scope this call needs.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: missing_scope
+              required_scope:
+                type: string
+                example: graph:read
+  schemas:
+    Resource:
+      type: object
+      properties:
+        id:
+          type: string
+          example: agw-prod-ae
+        type:
+          type: string
+          example: application_gateway
+        cloud:
+          type: string
+          enum: [azure, aws, cloudflare]
+        region:
+          type: string
+          example: australiaeast
+        exposed:
+          type: boolean
+        via:
+          type: string
+          description: How internet traffic reaches the resource.
+          enum: [behind_edge, skips_edge, public_ip]
+        sources:
+          type: array
+          description: Where each fact about the resource came from.
+          items:
+            type: string
+          example: [azure_resource_graph, terraform_state]
+    Connection:
+      type: object
+      properties:
+        id:
+          type: string
+          example: con-12
+        provider:
+          type: string
+          enum: [azure, aws, cloudflare, terraform]
+        status:
+          type: string
+          enum: [checking, connected, failed]
+        last_discovery_at:
+          type: string
+          format: date-time
+    Alert:
+      type: object
+      properties:
+        id:
+          type: string
+          example: alr-2041
+        severity:
+          type: string
+          enum: [critical, high, info]
+        title:
+          type: string
+          example: agw-prod-ae is reachable without the edge
+        resource:
+          type: string
+          example: agw-prod-ae
+        opened_at:
+          type: string
+          format: date-time

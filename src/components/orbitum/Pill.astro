@@ -1,0 +1,15 @@
+---
+/**
+ * <Pill> — a status pill from the design system (`.pill`). Status is never
+ * colour alone: the word carries the meaning, the colour supports it.
+ *
+ * Usage (MDX): <Pill variant="ok">Healthy</Pill>  ·  <Pill variant="azure">Azure</Pill>
+ * Use <Simulated /> for anything that comes from the Simulation lab.
+ */
+interface Props {
+  variant?: "ok" | "warn" | "bad" | "info" | "violet" | "azure" | "aws" | "neutral";
+}
+const { variant = "neutral" } = Astro.props;
+---
+
+<span class:list={["orb-pill", variant !== "neutral" && variant]}><slot /></span>

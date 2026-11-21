@@ -1,0 +1,29 @@
+---
+title: Concepts
+description: The ideas behind Orbitum — the resource graph, exposure, sources and scopes.
+pcx_content_type: concept
+sidebar:
+  order: 3
+---
+
+## The resource graph
+
+Every resource Orbitum discovers is a node: a gateway, a virtual machine, a DNS record, a Terraform resource. Relationships between them are edges: _routes to_, _runs in_, _defined by_. The live map draws the same graph you query.
+
+## Exposure
+
+A resource is **exposed** when traffic from the internet can reach it. Orbitum records the path, so every exposed resource says _how_: through the edge, around the edge, or through a public IP.
+
+| Path | Meaning |
+| --- | --- |
+| Behind edge | Traffic passes through Cloudflare before it reaches the resource |
+| Skips edge | The resource is also reachable without the edge |
+| Public IP | The resource has its own public address |
+
+## Sources
+
+Every fact carries its source: the cloud API, CloudTrail, Azure Activity Log, Cloudflare logs or Terraform state. When sources disagree, Orbitum shows both and marks the resource <Pill variant="warn">Needs review</Pill>.
+
+## Keys and scopes
+
+API keys carry scopes. Read scopes (`graph:read`, `alerts:read`) are safe to give to dashboards and agents. Write scopes (`runbooks:write`, `agents:act`) always route changes through [approvals](/agents/approvals/).

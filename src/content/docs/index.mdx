@@ -1,0 +1,77 @@
+---
+title: Orbitum developer docs
+description: Query the resource graph, react to alerts, ship runbooks and give agents safe access to your Azure and AWS estate.
+pcx_content_type: overview
+template: splash
+tableOfContents: false
+sidebar:
+  order: 0
+---
+
+<HomeHero
+  title="Orbitum developer docs"
+  lead="Query the resource graph, react to alerts, ship runbooks and give agents safe access to your Azure and AWS estate."
+  primary={{ label: "Get started", href: "/get-started/quickstart/" }}
+/>
+
+## Everything on the map is an API
+
+<Tabs>
+  <TabItem label="Graph">
+    ### Query the resource graph
+
+    Ask for resources, relationships and exposure in one query language. Results match what the live map shows, with the source of every fact attached.
+
+    <CommandLine command='orb graph query "resources where exposed = true"' />
+
+    [Write your first query](/graph/) · [Live map embeds](/graph/live-map-embeds/)
+  </TabItem>
+  <TabItem label="Agents">
+    ### Hand a mission to an agent
+
+    Agents such as Sentinel and Warden investigate alerts, propose fixes and open pull requests. Anything that changes your estate waits for approval.
+
+    <CommandLine command='orb agents run sentinel --mission "explain alert alr-2041"' />
+
+    [Start an agent](/agents/) · [Approvals and audit](/agents/approvals/)
+  </TabItem>
+  <TabItem label="Runbooks">
+    ### Ship runbooks as code
+
+    Write a runbook once, test it against a sandbox tenant, then let alerts trigger it.
+
+    <CommandLine command="orb runbooks deploy ./runbooks/rotate-gateway-cert.yaml" />
+
+    [Write a runbook](/agents/runbooks/)
+  </TabItem>
+  <TabItem label="Simulation lab">
+    ### Rehearse incidents safely
+
+    <Simulated /> Replay real failures against a copy of your estate and check that alerts, agents and runbooks respond the way you expect.
+
+    <CommandLine command="orb lab simulations create --from-incident inc-117" />
+
+    [Run a simulation](/simulation-lab/) · [Sandbox tenants](/simulation-lab/sandbox-tenants/)
+  </TabItem>
+</Tabs>
+
+## Connect your clouds
+
+<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 not-prose">
+  <LinkCard title="Azure" href="/connect/azure/" dot="cloud-azure" cta="Connect">Map subscriptions with the Reader role.</LinkCard>
+  <LinkCard title="AWS" href="/connect/aws/" dot="cloud-aws" cta="Connect">Map accounts with a read-only cross-account role.</LinkCard>
+  <LinkCard title="Cloudflare edge" href="/connect/cloudflare-edge/" dot="cat-edge" cta="Connect">See which resources sit behind the edge.</LinkCard>
+  <LinkCard title="Terraform state" href="/connect/terraform-state/" dot="muted" cta="Connect">Link every resource to the code that made it.</LinkCard>
+</div>
+
+## Build with Orbitum
+
+<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 not-prose">
+  <LinkCard title="Quickstart" href="/get-started/quickstart/" icon="play" cta="Start in five minutes">Install the CLI, connect one account and run your first query.</LinkCard>
+  <LinkCard title="API reference" href="/api/" icon="cube" cta="Browse the API">Every endpoint, with request and response examples.</LinkCard>
+  <LinkCard title="Agent setup" href="/agent-setup/" icon="agent" cta="Connect your agent">Use Orbitum from Claude Code, Codex, Cursor or OpenCode.</LinkCard>
+</div>
+
+## Latest changes
+
+<LatestChanges count={3} />

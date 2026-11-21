@@ -1,0 +1,34 @@
+---
+title: Runbooks
+description: Write runbooks as code, test them in a sandbox tenant, then let alerts trigger them.
+pcx_content_type: how-to
+products:
+  - agents
+---
+
+A runbook is a YAML file of steps. Steps that only read run at once; steps that change something wait for approval.
+
+```yaml title="runbooks/rotate-gateway-cert.yaml"
+name: Rotate gateway certificate
+trigger:
+  alert: tls.expires
+  min_severity: high
+steps:
+  - read: gateways where name = "{{ alert.resource }}"
+  - propose: rotate-certificate
+    with:
+      gateway: "{{ alert.resource }}"
+      key_vault: kv-prod-ae
+```
+
+## Test it
+
+```sh
+orb runbooks test ./runbooks/rotate-gateway-cert.yaml --tenant sandbox-1
+```
+
+## Deploy it
+
+```sh
+orb runbooks deploy ./runbooks/rotate-gateway-cert.yaml
+```

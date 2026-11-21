@@ -1,0 +1,5 @@
+name: API reference
+description: Every endpoint, with request and response examples.
+url: /api/
+group: Reference
+icon: cube

@@ -1,0 +1,27 @@
+---
+import Logo from "./Logo.astro";
+import { site } from "@/site";
+import { withBase } from "@cloudflare/nimbus-docs/runtime";
+
+const base = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
+---
+
+<footer class="orb-foot" aria-label="Site footer">
+  <div class="mx-auto max-w-6xl px-6 py-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="flex flex-col gap-3">
+      <span class="orb-brand"><Logo /> {site.brand}</span>
+      <p class="m-0">Your cloud, mapped. Documentation for the Orbitum platform.</p>
+    </div>
+    {site.footer.map((col) => (
+      <nav aria-label={col.title} class="flex flex-col gap-2">
+        <span class="orb-lab">{col.title}</span>
+        {col.links.map((l) => <a href={withBase(l.href, base)}>{l.label}</a>)}
+      </nav>
+    ))}
+  </div>
+  <div class="mx-auto max-w-6xl px-6 py-4 flex flex-wrap gap-4 justify-between border-t border-border">
+    <span>© {year} CloudOrbitum</span>
+    <a href={site.repoUrl} target="_blank" rel="noopener">Edit these docs on GitHub</a>
+  </div>
+</footer>

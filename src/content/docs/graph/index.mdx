@@ -1,0 +1,44 @@
+---
+title: Graph queries
+description: Query resources, relationships and exposure across every connected cloud.
+pcx_content_type: reference
+products:
+  - graph
+---
+
+The query language reads like a sentence: pick a kind of thing, filter it, then follow its relationships.
+
+<CommandLine command='orb graph query "resources where exposed = true"' />
+
+## Filters
+
+```txt
+resources where cloud = "azure" and region = "australiaeast"
+resources where tag.env = "prod" and exposed = true
+gateways where tls.expires < 30d
+```
+
+| Operator | Example |
+| --- | --- |
+| `=`, `!=` | `cloud = "aws"` |
+| `<`, `>` | `tls.expires < 30d` |
+| `in` | `region in ["us-east-1", "us-west-2"]` |
+| `has` | `tags has "owner"` |
+
+## Paths
+
+Follow relationships with `->`. This finds every database a public gateway can reach:
+
+```txt
+gateways where exposed = true -> routes to -> databases
+```
+
+## From the API
+
+```sh
+curl https://api.cloudorbitum.com/v1/accounts/acme-demo/graph/query \
+  -H "Authorization: Bearer $ORBITUM_KEY" \
+  -d '{"query": "resources where exposed = true"}'
+```
+
+See [Query the graph](/api/) in the API reference for the full request and response.

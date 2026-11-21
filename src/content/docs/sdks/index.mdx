@@ -1,0 +1,43 @@
+---
+title: SDKs
+description: Official Orbitum SDKs for TypeScript, Python and Go.
+pcx_content_type: reference
+---
+
+<Tabs syncKey="lang">
+  <TabItem label="TypeScript">
+    <PackageManagers pkg="@orbitum/sdk" />
+
+    ```ts
+    import { Orbitum } from "@orbitum/sdk";
+
+    const orb = new Orbitum({ key: process.env.ORBITUM_KEY });
+    const { count } = await orb.graph.query("acme-demo", {
+      query: "resources where exposed = true",
+    });
+    ```
+  </TabItem>
+  <TabItem label="Python">
+    ```sh
+    pip install orbitum
+    ```
+
+    ```py
+    import os
+    from orbitum import Orbitum
+
+    orb = Orbitum(key=os.environ["ORBITUM_KEY"])
+    result = orb.graph.query("acme-demo", query="resources where exposed = true")
+    ```
+  </TabItem>
+  <TabItem label="Go">
+    ```sh
+    go get github.com/cloudorbitum/orbitum-go
+    ```
+
+    ```go
+    client := orbitum.NewClient(os.Getenv("ORBITUM_KEY"))
+    result, err := client.Graph.Query(ctx, "acme-demo", "resources where exposed = true")
+    ```
+  </TabItem>
+</Tabs>

@@ -1,0 +1,8 @@
+---
+/* The Orbitum brand mark: a yellow ring with a cyan orbit (styles in
+   src/styles/orbitum/theme.css, `.orb-logo`). The social cards draw their own
+   version from logo.ts. */
+interface Props { class?: string }
+const { class: cls } = Astro.props;
+---
+<span class:list={["orb-logo", cls]} aria-hidden="true"><i></i></span>

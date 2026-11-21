@@ -1,0 +1,36 @@
+---
+/**
+ * OrbIcon — an Orbitum design-system icon (24 px grid, 1.6 px stroke, round
+ * caps, currentColor). Paths come from src/styles/orbitum/icons.json, copied
+ * from orbitum-design-system/icons/icons.json.
+ *
+ * For icons the design system doesn't have yet, use Nimbus's <Icon> with a
+ * Phosphor (`ph:`) name, and propose the icon to the design system.
+ */
+import icons from "../styles/orbitum/icons.json";
+
+interface Props {
+  name: keyof typeof icons | string;
+  size?: number;
+  class?: string;
+  label?: string;
+}
+
+const { name, size = 16, class: cls, label } = Astro.props;
+const d = (icons as Record<string, string>)[name];
+if (!d) throw new Error(`OrbIcon: unknown icon "${name}". See src/styles/orbitum/icons.json.`);
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.6"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={cls}
+  role={label ? "img" : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : "true"}><path d={d} /></svg>

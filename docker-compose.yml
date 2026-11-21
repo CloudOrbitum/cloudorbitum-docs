@@ -1,0 +1,32 @@
+# Local instances of the Orbitum docs.
+#
+#   docker compose up --build        production build, served by nginx on http://localhost:8080
+#   docker compose up dev            dev server with live reload on http://localhost:1111
+#
+services:
+  docs:
+    build:
+      context: .
+      target: runtime
+      args:
+        SITE_URL: http://localhost:8080
+    image: cloudorbitum-docs:local
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+  dev:
+    profiles: ["dev"]
+    build:
+      context: .
+      target: dev
+    image: cloudorbitum-docs:dev
+    ports:
+      - "1111:1111"
+    environment:
+      DOCKER_DEV: "true"
+    volumes:
+      # Edit on your machine, see it in the container.
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./astro.config.ts:/app/astro.config.ts

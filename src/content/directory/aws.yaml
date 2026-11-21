@@ -1,0 +1,6 @@
+name: AWS
+description: Map accounts with a read-only cross-account role.
+url: /connect/aws/
+group: Connect
+icon: integrations
+dot: cloud-aws

@@ -1,0 +1,18 @@
+---
+title: Sandbox tenants
+description: Isolated copies of your estate's shape, for simulations and runbook tests.
+pcx_content_type: how-to
+products:
+  - simulation-lab
+---
+
+A sandbox tenant mirrors the shape of your estate (resources, relationships, policies) without any of its data or access.
+
+```sh
+orb lab tenants create sandbox-1 --mirror acme-demo
+orb lab tenants list
+```
+
+<Aside type="note">
+  Sandbox tenants expire after 30 days unless you extend them with `orb lab tenants extend`.
+</Aside>

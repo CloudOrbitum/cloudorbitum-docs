@@ -1,0 +1,5 @@
+name: Live map embeds
+description: Embed a filtered, read-only live map in your own tools.
+url: /graph/live-map-embeds/
+group: Build
+icon: live-map

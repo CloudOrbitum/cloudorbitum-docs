@@ -1,0 +1,5 @@
+name: Graph
+description: Query resources, relationships and exposure across every connected cloud.
+url: /graph/
+group: Build
+icon: live-map
