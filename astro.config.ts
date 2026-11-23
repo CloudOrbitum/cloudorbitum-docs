@@ -7,7 +7,7 @@ import { tableScroll } from "@cloudflare/nimbus-docs/markdown";
 
 // The canonical origin of the published docs (no trailing slash). Drives
 // canonical URLs, OG images, robots.txt, the sitemap and /llms.txt.
-const SITE = process.env.SITE_URL ?? "https://docs.cloudorbitum.com";
+const SITE = process.env.SITE_URL ?? "https://developers.cloudorbitum.com";
 const REPO = "https://github.com/CloudOrbitum/cloudorbitum-docs";
 
 const link = (label: string, href: string) => ({ label, link: href });
@@ -119,7 +119,7 @@ const nimbusConfig = defineNimbusConfig({
 export default defineConfig({
   site: SITE,
   output: "static",
-  // Dev server port, as in cloudflare-docs.
+  // Dev server port.
   server: { port: 1111, host: true },
   // Tailwind v4 via its Vite plugin.
   vite: {

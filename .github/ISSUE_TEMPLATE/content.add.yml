@@ -1,0 +1,41 @@
+name: Request content addition
+description: Request NEW documentation content.
+labels: ["documentation", "content:new"]
+body:
+  - type: textarea
+    id: location-urls
+    validations:
+      required: true
+    attributes:
+      label: Proposed changes
+      description: Provide links to the top-level section of `https://developers.cloudorbitum.com/` or specific proposed pages.
+      placeholder: |
+        - https://developers.cloudorbitum.com/connect/
+        - https://developers.cloudorbitum.com/agents/
+
+  - type: input
+    id: subject
+    validations:
+      required: true
+    attributes:
+      label: Subject matter
+      description: What needs to be documented?
+
+  - type: textarea
+    id: location
+    validations:
+      required: true
+    attributes:
+      label: Content location
+      placeholder: Should this be a new page, a new section within an existing page, or a note within a section?
+      description: |
+        Where would you expect this addition to be placed?
+        Please provide any URLs to existing pages.
+
+  - type: textarea
+    id: extra
+    validations:
+      required: false
+    attributes:
+      label: Additional information
+      description: Any other details or screenshots that may be relevant.

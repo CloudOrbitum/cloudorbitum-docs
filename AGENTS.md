@@ -1,6 +1,6 @@
 # AGENTS.md — Orbitum docs
 
-Guidance for AI agents working in this repository. It is modelled on cloudflare-docs' `AGENTS.md`: same framework, same content model, Orbitum's design system and content style.
+Guidance for AI agents working in this repository: the framework, the content model, and Orbitum's design system and content style.
 
 Read also:
 - [AGENT.md](AGENT.md) — the Nimbus framework guide that came with the starter (sidebar, API reference, upgrades, audit). Upstream-owned; don't rewrite it.
@@ -9,8 +9,8 @@ Read also:
 
 ## Overview
 
-- **Astro 7** static site on **Nimbus** (`@cloudflare/nimbus-docs`), the framework behind developers.cloudflare.com. Pages are **MDX**.
-- **Node.js 24**, **npm**. Dev server on port **1111** (as cloudflare-docs).
+- **Astro 7** static site on the **Nimbus** docs framework (npm package `@cloudflare/nimbus-docs`). Pages are **MDX**.
+- **Node.js 24**, **npm**. Dev server on port **1111**.
 - Default branch: `main`.
 
 ## Commands
@@ -65,7 +65,7 @@ The sidebar is explicit in `astro.config.ts` (`sidebar.items`), matching the moc
 
 ## Frontmatter
 
-Schema: `src/content.config.ts`. Required: `title`. Expected: `description`, `pcx_content_type` (Cloudflare's taxonomy: `overview`, `get-started`, `concept`, `how-to`, `tutorial`, `reference`, `troubleshooting`, `navigation`, `changelog`, …). Optional: `products`, `reviewed` (also used as the "Updated" date), `difficulty`, `tags`, `template: splash` (no page header, wide column), plus the Nimbus fields (`sidebar`, `tableOfContents`, `draft`, `noindex`, `banner`, `prev`/`next`).
+Schema: `src/content.config.ts`. Required: `title`. Expected: `description`, `content_type` (the page type: `overview`, `get-started`, `concept`, `how-to`, `tutorial`, `reference`, `troubleshooting`, `navigation`, `changelog`, …). Optional: `products`, `reviewed` (also used as the "Updated" date), `difficulty`, `tags`, `template: splash` (no page header, wide column), plus the Nimbus fields (`sidebar`, `tableOfContents`, `draft`, `noindex`, `banner`, `prev`/`next`).
 
 ## Content rules
 
@@ -73,6 +73,13 @@ From the Orbitum content style (`../orbitum-design-system/docs/05-content-style.
 - Sentence case everywhere. No full stop on headings or labels. Units on every number. 24-hour time.
 - Sample data only: `acme-demo`, `example.com`, `203.0.113.0/24`, `198.51.100.0/24`. Never real customer names.
 - Status uses the standard words (Healthy, Needs review, Critical, Running, Simulated) and `<Pill>`; Simulation lab content carries `<Simulated />`.
+
+## Community files
+
+- `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md` (Contributor Covenant 1.4), `SECURITY.md` at the root.
+- `.github/ISSUE_TEMPLATE/` (content update, content addition, website error), `.github/pull_request_template.md`.
+- `.github/workflows/ci.yml` (check, build, lint, Docker image) and `no-response.yml` (closes `more-information-needed` items after 14 days).
+- The contributor guide shown on the site is `src/content/docs/style-guide/contributions.mdx`; keep it and `CONTRIBUTING.md` in step.
 
 ## Common mistakes
 

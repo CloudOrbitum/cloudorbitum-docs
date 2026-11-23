@@ -1,0 +1,191 @@
+---
+title: Contributions
+description: Contribute to the CloudOrbitum docs by opening an issue, making a quick edit, or setting up local development to raise a pull request.
+content_type: how-to
+noindex: true
+sidebar:
+  order: 1
+---
+
+The [CloudOrbitum docs](https://developers.cloudorbitum.com/) are open source and hosted in the [cloudorbitum-docs repository](https://github.com/CloudOrbitum/cloudorbitum-docs) on GitHub. Anyone, including people outside the CloudOrbitum organisation, can contribute. We welcome every suggestion that keeps the docs accurate and up to date.
+
+To contribute, you need a [GitHub account](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github). Then you have three options:
+
+- [GitHub issue](#create-a-github-issue): suggest a change without editing anything.
+- [Quick edit](#quick-edit): edit one page in your browser and open a pull request. Best for typos and small fixes.
+- [Full development](#full-development): edit several pages and preview them before you open a pull request. Works in your browser (with [Codespaces](https://docs.github.com/codespaces)) or on your machine.
+
+Use the [style guide](/style-guide/) for writing and formatting, and the [components](/style-guide/components/) for tabs, steps, asides and cards.
+
+Everyone who contributes follows the [Code of Conduct](https://github.com/CloudOrbitum/cloudorbitum-docs/blob/main/CODE_OF_CONDUCT.md). To report a security problem, don't open an issue: follow the [security policy](https://github.com/CloudOrbitum/cloudorbitum-docs/blob/main/SECURITY.md).
+
+## Create a GitHub issue
+
+<Steps>
+  <Step title="Open the repository">
+    [Sign in to GitHub](https://github.com/login) and go to the [cloudorbitum-docs repository](https://github.com/CloudOrbitum/cloudorbitum-docs).
+  </Step>
+  <Step title="Choose an issue type">
+    Select **Issues** > **New issue**, then pick one:
+
+    | Issue type | Use it to |
+    | --- | --- |
+    | Request content update | Fix or clarify an existing page |
+    | Request content addition | Ask for a new page or section |
+    | Docs website error | Report a problem with the site itself: layout, search, links |
+  </Step>
+  <Step title="Fill in the form">
+    Add the page links and as much detail as you can, then select **Create**.
+  </Step>
+</Steps>
+
+Questions about your own Orbitum account belong with [Support](/support/), not in an issue.
+
+## Quick edit
+
+<Steps>
+  <Step title="Find the page">
+    [Sign in to GitHub](https://github.com/login), then go to the page you want to change on [developers.cloudorbitum.com](https://developers.cloudorbitum.com/).
+  </Step>
+  <Step title="Select Edit page">
+    Every page has an **Edit page** link in the right-hand column, under **Was this helpful?**. The page's MDX source opens on GitHub.
+
+    <Aside type="note">
+      The first time, GitHub says "You need to fork this repository to propose changes". Select **Fork this repository**. Your future pull requests go to a new branch on your fork.
+    </Aside>
+  </Step>
+  <Step title="Make your edit and commit it">
+    In **Commit message**, put the product in brackets and a short description, for example `[Connect] Fix broken link to the AWS guide`. In **Extended description**, say what you changed and why.
+  </Step>
+  <Step title="Open the pull request">
+    Select **Propose changes** > **Create pull request** > **Create pull request**.
+  </Step>
+</Steps>
+
+## Full development
+
+<Steps>
+  <Step title="Fork and clone">
+    [Fork the cloudorbitum-docs repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo). In Codespaces, open your fork and skip to the next step. On your machine, [clone your fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) and install either Node.js 24 or Docker Desktop.
+  </Step>
+  <Step title="Create a branch">
+    ```sh
+    git checkout -b connect-gcp
+    ```
+  </Step>
+  <Step title="Start the preview">
+    <Tabs syncKey="setup">
+      <TabItem label="Node.js">
+        ```sh
+        npm install
+        npm run dev
+        ```
+      </TabItem>
+      <TabItem label="Docker">
+        ```sh
+        docker compose up --build dev
+        ```
+      </TabItem>
+    </Tabs>
+
+    Open `http://localhost:1111`. The preview updates as you save.
+  </Step>
+  <Step title="Make your edits">
+    See [Where things live](#where-things-live) and [Add a page](#add-a-page).
+  </Step>
+  <Step title="Check your work">
+    ```sh
+    npm run check
+    npm run build
+    npm run lint:docs
+    ```
+  </Step>
+  <Step title="Open a pull request">
+    Push your branch to your fork and open a pull request against `main`. Start the title with the product in brackets, for example `[Connect] Add Google Cloud guide`, and fill in the pull request template.
+  </Step>
+</Steps>
+
+### Where things live
+
+| Path | What it holds |
+| --- | --- |
+| `src/content/docs/` | One MDX file per page. The path is the URL: `connect/azure.mdx` → `/connect/azure/` |
+| `src/content/partials/` | Reusable MDX snippets, included with `<Render>` |
+| `src/content/changelog/` | One file per changelog entry, in a folder per product |
+| `src/content/directory/` | One YAML file per product, shown on [Directory](/directory/) |
+| `src/api/openapi.yaml` | The API spec behind the [API reference](/api/) |
+| `src/assets/images/` | Images used in pages |
+| `astro.config.ts` | Site settings and the sidebar |
+
+### Add a page
+
+<Steps>
+  <Step title="Create the file">
+    Folder and file names are lowercase with dashes, and every folder has an `index.mdx`.
+
+    ```mdx title="src/content/docs/connect/gcp.mdx"
+    ---
+    title: Connect Google Cloud
+    description: Map a Google Cloud project with a read-only service account.
+    content_type: how-to
+    products:
+      - connect
+    ---
+
+    Orbitum reads resources through a service account with the Viewer role.
+    ```
+  </Step>
+  <Step title="Add it to the sidebar">
+    Add a `link("Google Cloud", "/connect/gcp/")` line to the right group in `astro.config.ts`.
+  </Step>
+  <Step title="Announce it">
+    If the page covers something new, add a [changelog entry](/style-guide/changelog-entries/).
+  </Step>
+</Steps>
+
+### Common mistakes
+
+1. **Unescaped `{`, `}`, `<` or `>` in prose.** MDX reads them as code. Wrap them in backticks.
+2. **Full URLs for internal links.** Use `/connect/azure/`, not `https://developers.cloudorbitum.com/connect/azure/`.
+3. **Relative links.** `./azure` doesn't work. Use the absolute path from the site root.
+4. **Skipped heading levels.** Don't jump from `##` to `####`.
+5. **A `$` before terminal commands.** The copy button copies it too.
+6. **Capitalised code languages.** Use `json`, not `JSON`; `txt` for plain output.
+7. **Hard-coded colours in components.** Use design-system tokens only. See `src/styles/orbitum/theme.css`.
+
+## After you open an issue or pull request
+
+A member of the CloudOrbitum docs team reviews every issue and pull request. Here is what to expect:
+
+- They may ask other people for a technical or content review.
+- If they need more information, they comment with a question and add the `more-information-needed` label. If there's no reply within 14 days, the issue or pull request closes automatically. You can reopen it at any time.
+- If your suggestion is accepted:
+  - **Issue:** a team member opens a pull request that fixes it, and closes your issue when it merges.
+  - **Pull request:** a team member approves and merges it.
+- If your suggestion isn't accepted, a team member explains why and closes it.
+
+Thank you for helping keep the CloudOrbitum docs accurate.
+
+## Content reviews
+
+### Will this break anything?
+
+Every pull request runs the **CI** check (`.github/workflows/ci.yml`). It must pass before a pull request can merge. It checks that:
+
+- The frontmatter of every page matches the schema.
+- The site builds, and every MDX page parses.
+- Every internal link resolves.
+
+### Who needs to approve this?
+
+A member of the docs team approves every pull request. Changes to components, styles or the site configuration also need a review from an engineering maintainer.
+
+### Renamed or deleted pages
+
+If you rename, move or delete a page, list the old and new URLs in the pull request, so a maintainer can add a redirect and old links keep working.
+
+## Contribute with AI
+
+The repository includes an [`AGENTS.md`](https://github.com/CloudOrbitum/cloudorbitum-docs/blob/main/AGENTS.md) file. It tells AI coding agents about the structure, tools and conventions of the repository, so they make changes that build. [AGENTS.md](https://agents.md/) is an open format that most coding agents read, including Claude Code (through `CLAUDE.md`), Codex, Cursor, GitHub Copilot and OpenCode.
+
+Review everything an agent writes before you open a pull request. You are responsible for the change, whoever typed it.

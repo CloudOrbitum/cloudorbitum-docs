@@ -6,7 +6,7 @@
  * component here, add it to that page in the same change.
  */
 
-// Nimbus UI (the same building blocks as developers.cloudflare.com)
+// Nimbus UI building blocks
 import { Aside } from "./components/ui/aside";
 import Render from "./components/Render.astro";
 import { Badge } from "./components/ui/badge";

@@ -15,7 +15,7 @@ interface Props {
 }
 
 const { editUrl, title } = Astro.props;
-const issueUrl = `${site.repoUrl}/issues/new?title=${encodeURIComponent(`Docs feedback: ${title}`)}&body=${encodeURIComponent(`Page: ${Astro.url.pathname}\n\nWhat could be better?\n`)}`;
+const issueUrl = `${site.repoUrl}/issues/new?template=content.edit.yml&title=${encodeURIComponent(`Docs feedback: ${title}`)}&body=${encodeURIComponent(`Page: ${Astro.url.pathname}\n\nWhat could be better?\n`)}`;
 ---
 
 <div class="orb-tocfoot" data-orb-feedback>

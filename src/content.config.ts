@@ -9,7 +9,7 @@ import {
 } from "@cloudflare/nimbus-docs/content";
 
 /**
- * Page types, after Cloudflare's `pcx_content_type` taxonomy. Pick the one
+ * Page types (`content_type`). Pick the one
  * that matches what the reader is trying to do; see
  * /style-guide/content-types/ for when to use each.
  */
@@ -40,9 +40,9 @@ export const collections = {
         // to flag a page that's written primarily for human readers.
         audience: z.literal("human").optional(),
 
-        // --- Orbitum / Cloudflare-style frontmatter -----------------------
-        /** The page type (Cloudflare's `pcx_content_type`). */
-        pcx_content_type: z.enum(contentTypes).optional(),
+        // --- Orbitum frontmatter ------------------------------------------
+        /** The page type. */
+        content_type: z.enum(contentTypes).optional(),
         /** Product slugs the page belongs to (ids in src/content/directory/). */
         products: z.array(z.string()).optional(),
         /** Last human review of the content, YYYY-MM-DD. */
@@ -60,7 +60,7 @@ export const collections = {
   // The API reference, generated from the `api` entry in astro.config.ts.
   api: defineCollection(apiCollection()),
 
-  // Product changelog entries, one file per entry (as in cloudflare-docs).
+  // Product changelog entries, one file per entry.
   // Rendered at /changelog/.
   changelog: defineCollection({
     loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/changelog" }),
@@ -75,7 +75,7 @@ export const collections = {
     }),
   }),
 
-  // Product directory (as in cloudflare-docs src/content/directory/):
+  // Product directory:
   // one YAML file per product, rendered at /directory/ and on the home page.
   directory: defineCollection({
     loader: glob({ pattern: "*.{yaml,yml}", base: "./src/content/directory" }),

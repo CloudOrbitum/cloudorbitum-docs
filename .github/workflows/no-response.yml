@@ -1,0 +1,32 @@
+# Closes issues and pull requests labelled `more-information-needed` when the
+# author hasn't replied in 14 days. A reply from the author removes the label.
+name: No response
+
+on:
+  issue_comment:
+    types: [created]
+  schedule:
+    - cron: "0 6 * * *"
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  noResponse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          only-labels: more-information-needed
+          days-before-stale: -1
+          days-before-close: 14
+          stale-issue-label: more-information-needed
+          stale-pr-label: more-information-needed
+          remove-stale-when-updated: true
+          close-issue-message: >
+            This issue was closed because we asked for more information and haven't heard back in 14 days.
+            If you can add the information, comment here and we'll reopen it. Thank you for helping improve the docs.
+          close-pr-message: >
+            This pull request was closed because we asked for more information and haven't heard back in 14 days.
+            If you can add the information, comment here and we'll reopen it. Thank you for helping improve the docs.

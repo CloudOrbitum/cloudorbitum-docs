@@ -1,40 +1,55 @@
-# Contributing to the Orbitum docs
+# Contributing to the CloudOrbitum developer documentation
 
-Thanks for helping. The full guide is on the site at `/style-guide/` (source in `src/content/docs/style-guide/`). This file is the short version.
+Everyone, including people who are not part of the CloudOrbitum organisation, is welcome to contribute.
 
-## 1. Run the site
+- Learn how to contribute on the [Contributions page](https://developers.cloudorbitum.com/style-guide/contributions/) of the CloudOrbitum style guide (source: `src/content/docs/style-guide/contributions.mdx`).
+- Check the [style guide](https://developers.cloudorbitum.com/style-guide/) for writing, formatting and frontmatter, and the [components](https://developers.cloudorbitum.com/style-guide/components/) for tabs, steps, asides and cards.
 
-```sh
-docker compose up --build dev    # or: npm install && npm run dev
-```
+## Filing an issue
 
-Open http://localhost:1111. Pages reload as you save.
+**For a new page or a larger change, open an issue before a pull request.** That way we can agree on the approach before you spend time on it. Use one of the issue templates:
 
-## 2. Make your change
+- **Request content update**: fix or clarify an existing page.
+- **Request content addition**: ask for a new page or section.
+- **Docs website error**: report a problem with the site itself.
 
-- **A page:** add or edit an `.mdx` file in `src/content/docs/`. The path is the URL. Folder and file names are lowercase with dashes, and every folder has an `index.mdx`.
-- **The sidebar:** add a `link("Label", "/path/")` line to the right group in `astro.config.ts`.
-- **Shared text:** put it in `src/content/partials/` and include it with `<Render file="…" />`.
-- **A changelog entry:** add `src/content/changelog/<product>/<YYYY-MM-DD>-<slug>.mdx`.
-- **A product:** add a YAML file to `src/content/directory/`.
-- **The API reference:** edit `src/api/openapi.yaml`. Don't edit the generated pages.
+**You don't need an issue for small fixes**, such as a typo or a broken link. Open a pull request directly.
 
-Every page needs `title` and `description` frontmatter and a `pcx_content_type`. See `/style-guide/frontmatter/` and `/style-guide/content-types/`.
+**Never report a security problem in an issue.** Follow [SECURITY.md](SECURITY.md).
 
-## 3. Follow the style
+## Making a pull request
 
-- Sentence case, plain words, units on numbers. See `/style-guide/writing/`.
-- Sample data only: `acme-demo`, `example.com`, `203.0.113.0/24`. Never real customer names.
-- Components and styles use Orbitum design-system tokens only. No literal colours, fonts, radii or shadows.
+1. Fork the repository and create a branch.
+2. Run the site locally:
 
-## 4. Check it
+   ```sh
+   docker compose up --build dev    # or: npm install && npm run dev
+   ```
 
-```sh
-npm run check
-npm run build
-npm run lint:docs
-```
+   Open http://localhost:1111. Pages reload as you save.
+3. Make your change. Every page is an MDX file in `src/content/docs/`; see the Contributions page for where everything else lives.
+4. Check it:
 
-## 5. Open a pull request
+   ```sh
+   npm run check
+   npm run build
+   npm run lint:docs
+   ```
 
-Branch from `main` and open a pull request against `main`. Say which pages changed and why. For a visual change, say which mockup in `assets/` you followed.
+5. Open a pull request against `main`. Start the title with the product in brackets, for example `[Connect] Fix broken link`, and fill in the template.
+
+A member of the docs team reviews your pull request. If they need more information, they add the `more-information-needed` label; without a reply within 14 days, the pull request closes automatically.
+
+### IDE configuration files
+
+Keep machine-specific files (such as `.idea/` or `.vscode/` settings) out of the repository. Add them to a [global `.gitignore`](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files#configuring-ignored-files-for-all-repositories-on-your-computer).
+
+## Conduct
+
+This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). Violating it can lead to a warning or a ban from the project.
+
+## Contact
+
+For questions about contributing, email [opensource@cloudorbitum.com](mailto:opensource@cloudorbitum.com).
+
+Thank you for helping keep the CloudOrbitum docs accurate.

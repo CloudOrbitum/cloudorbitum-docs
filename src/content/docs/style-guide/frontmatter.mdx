@@ -1,7 +1,7 @@
 ---
 title: Frontmatter
 description: Every frontmatter field the docs accept, and when to use it.
-pcx_content_type: reference
+content_type: reference
 noindex: true
 sidebar:
   order: 2
@@ -13,7 +13,7 @@ Frontmatter is the YAML block at the top of every page. The build checks it agai
 ---
 title: Connect Azure # Required. Sentence case.
 description: Map an Azure subscription with the Reader role. # Required for search and social cards.
-pcx_content_type: how-to # The page type. See Content types.
+content_type: how-to # The page type. See Content types.
 products: # Product ids from src/content/directory/.
   - connect
 reviewed: 2026-11-10 # Last time a person checked the page, YYYY-MM-DD.
@@ -29,7 +29,7 @@ sidebar:
 | --- | --- | --- |
 | `title` | string | The page title and `<h1>`. Required. |
 | `description` | string | The lead under the title, and the search and social description. |
-| `pcx_content_type` | enum | The page type, as on developers.cloudflare.com. See [Content types](/style-guide/content-types/). |
+| `content_type` | enum | The page type. See [Content types](/style-guide/content-types/). |
 | `products` | string[] | Product ids from `src/content/directory/`. |
 | `reviewed` | date | Last human review. |
 | `difficulty` | `Beginner` · `Intermediate` · `Advanced` | Tutorials and learning paths. |

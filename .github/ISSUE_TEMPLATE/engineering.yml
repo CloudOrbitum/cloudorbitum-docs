@@ -1,0 +1,38 @@
+name: Docs website error
+description: Report an issue with the live documentation website; for example, issues with content display, search, links or browser behaviour.
+labels: ["engineering"]
+body:
+  - type: textarea
+    id: location-urls
+    validations:
+      required: true
+    attributes:
+      label: Example URL(s)
+      description: Provide links that demonstrate the issue or behaviour.
+      placeholder: |
+        - https://developers.cloudorbitum.com/...
+        - https://developers.cloudorbitum.com/...
+
+  - type: textarea
+    id: actual
+    validations:
+      required: true
+    attributes:
+      label: Actual behaviour
+      description: Explain the issue or undesired behaviour.
+
+  - type: textarea
+    id: expected
+    validations:
+      required: true
+    attributes:
+      label: Expected behaviour
+      description: Explain the expected behaviour.
+
+  - type: textarea
+    id: extra
+    validations:
+      required: false
+    attributes:
+      label: Additional information
+      description: Browser, operating system, screenshots or anything else that may be relevant.

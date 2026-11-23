@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Check, build and lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history for "Last updated" dates
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Only allowed file types in src/content
+        run: |
+          bad=$(find src/content -type f ! -name '*.mdx' ! -name '*.md' ! -name '*.yaml' ! -name '*.yml' ! -name '*.json' ! -name '*.txt')
+          if [ -n "$bad" ]; then echo "Files not allowed in src/content:"; echo "$bad"; exit 1; fi
+
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+      - run: npm run lint:docs
+
+  docker:
+    name: Docker image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build --target runtime -t cloudorbitum-docs:ci .

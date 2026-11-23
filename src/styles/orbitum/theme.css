@@ -1,7 +1,7 @@
 /* ============================================================
  * Orbitum theme for the docs site.
  *
- * The site runs on Nimbus (the framework behind developers.cloudflare.com).
+ * The site runs on the Nimbus docs framework.
  * Nimbus styles every component from `--nb-*` variables (src/styles/globals.css).
  * This file points each of those variables at an Orbitum design-system token
  * (src/styles/orbitum/tokens.css, copied from the orbitum-design-system repo),

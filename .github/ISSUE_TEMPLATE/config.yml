@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Help with your Orbitum account
+    url: https://developers.cloudorbitum.com/support/
+    about: For help with your own Orbitum account, connections or billing, contact Orbitum Support.
+  - name: Report a security problem
+    url: https://github.com/CloudOrbitum/cloudorbitum-docs/security/advisories/new
+    about: Report security problems privately. Never open a public issue for them.

@@ -34,7 +34,11 @@ npm run dev                      # http://localhost:1111
 
 ## Contribute
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md), then the style guide at `/style-guide/` on the running site.
+Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [Contributions page](https://developers.cloudorbitum.com/style-guide/contributions/) of the style guide. Everyone who takes part follows the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Security
+
+Don't report security problems in public issues. See [SECURITY.md](SECURITY.md).
 
 ## Licence
 
